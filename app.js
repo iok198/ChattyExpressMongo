@@ -5,11 +5,14 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var hbs = require("express-handlebars");  
+var mongoose = require("mongoose");
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
 var app = express();
+
+mongoose.connect("localhost/ChattyDB");
 
 // view engine setup
 app.engine("hbs", hbs({defaultLayout: "layout", extname: ".hbs"}));
