@@ -59,6 +59,6 @@ passport.use("signin", new LocatStratagy({
             return done(null, false, { message: "Invalid Password" })
         }
 
-        return done(null user)
+        return done(null, user)
     });
 }));
