@@ -16,8 +16,8 @@ passport.use("signup", new LocatStratagy({
     usernameField: "username",
     passwordField: "password",
     passReqToCallback: true
-}, function (req, username, passport, done) {
-    User.findOne(username, function (err, user) {
+}, function (req, username, password, done) {
+    User.findOne({username: username}, function (err, user) {
         if (err) {
             return done(err);
         }
@@ -28,7 +28,7 @@ passport.use("signup", new LocatStratagy({
 
         var newUser = new User({
             username,
-            passport
+            password
         });
 
         newUser.save(function (err, theNewUser) {
@@ -45,8 +45,8 @@ passport.use("signin", new LocatStratagy({
     usernameField: "username",
     passwordField: "password",
     passReqToCallback: true
-}, function (req, username, passport, done) {
-    User.findOne(username, function (err, user) {
+}, function (req, username, password, done) {
+    User.findOne({username: username}, function (err, user) {
         if (err) {
             return done(err);
         }
