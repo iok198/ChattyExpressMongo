@@ -1,4 +1,11 @@
 <h1>Sign up</h1>
+{{#if hasErrors}}
+    <div style="color:red">
+        {{#each errors}}
+            <p>{{this}}</p>
+        {{/each}}
+    </div>
+{{/if}}
 <form action="/user/signup" method="post">
     <input type="text" name="username">
     <input type="password" name="password">
