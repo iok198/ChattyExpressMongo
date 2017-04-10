@@ -2,8 +2,14 @@ var User = require("../models/user.model");
 var expect = require("chai").expect;
 var assert = require("assert");
 var bcrypt = require("bcrypt-nodejs");
+var mongoose = require("mongoose");
 
 describe("User Tests", function() {
+
+    before(function() {
+        mongoose.connect("localhost/ChattyDB")
+    });
+
     it("Creates user properly", function() {
         var testUser = new User({
             username: "Test",
@@ -28,13 +34,17 @@ describe("User Tests", function() {
 
     it("should compare passwords correctly", function() {
         User.findOne({username: "Test"}, function(err, user) {
-            expect(bcrypt.compareSync(user.password, "password")).to.be(true);
+            expect(user.validPassword(user.password)).to.be(true);
         });
     });
 
-    // it("Deletes user properly",function() {
-    //     User.remove({username: "Test"}, function(err) {
-    //         assert(err, null);
-    //     });
-    // });
+    it("Deletes user properly",function() {
+        User.remove({username: "Test"}, function(err) {
+            assert(err, null);
+        });
+    });
+
+    after(function() {
+        mongoose.connection.close();
+    });
 });

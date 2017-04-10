@@ -55,7 +55,7 @@ passport.use("signin", new LocatStratagy({
             return done(null, false, { message: "Username not found" });
         }
 
-        if (user.validPassword(password)) {
+        if (!user.validPassword(password)) {
             return done(null, false, { message: "Invalid Password" })
         }
 
