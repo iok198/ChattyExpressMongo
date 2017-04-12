@@ -9,9 +9,12 @@ var mongoose = require("mongoose");
 var passport = require("passport");
 var session = require("express-session");
 var flash = require("connect-flash");
+var React = require("react");
+var ReactDOMServer = require("react-dom/server");
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var testReact = require("./src/testComponent.js");
 
 var app = express();
 
@@ -41,6 +44,14 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.get("/tester", function(req, res) {
+  var renderedHTML = ReactDOMServer.renderToString(React.createElement(testReact.comp))
+  res.send(testReact.template({
+    body: renderedHTML,
+    title: "tester stuff"
+  }))
+})
 
 app.use('/', routes);
 app.use('/user', users);
