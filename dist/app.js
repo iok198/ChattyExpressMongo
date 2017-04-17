@@ -356,26 +356,37 @@
 
 	"use strict";
 
-	var mongoose = __webpack_require__(8);
-	var bcrypt = __webpack_require__(17);
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
 
-	var UserSchema = new mongoose.Schema({
+	var _mongoose = __webpack_require__(8);
+
+	var _mongoose2 = _interopRequireDefault(_mongoose);
+
+	var _bcryptNodejs = __webpack_require__(17);
+
+	var _bcryptNodejs2 = _interopRequireDefault(_bcryptNodejs);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var UserSchema = new _mongoose2.default.Schema({
 	    username: { type: String, required: true },
 	    password: { type: String, required: true }
 	});
 
 	UserSchema.methods.validPassword = function (canidatePassword) {
-	    return bcrypt.compareSync(canidatePassword, this.password);
+	    return _bcryptNodejs2.default.compareSync(canidatePassword, this.password);
 	};
 
 	UserSchema.pre("save", function (next) {
-	    this.password = bcrypt.hashSync(this.password, bcrypt.genSaltSync(10), null);
+	    this.password = _bcryptNodejs2.default.hashSync(this.password, _bcryptNodejs2.default.genSaltSync(10), null);
 	    next();
 	});
 
-	var User = mongoose.model("User", UserSchema);
+	var User = _mongoose2.default.model("User", UserSchema);
 
-	module.exports = User;
+	exports.default = User;
 
 /***/ },
 /* 17 */
