@@ -23,7 +23,7 @@ import "./passport"
 
 // view engine setup
 app.engine("hbs", hbs({defaultLayout: "layout", extname: ".hbs"}));
-app.set('views', path.normalize("./" + __dirname + "/../views"));
+app.set('views', path.normalize(`./${__dirname}/../../views`));
 app.set('view engine', 'hbs');
 
 // uncomment after placing your favicon in /public
@@ -43,7 +43,7 @@ app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use(express.static(path.normalize(`./${__dirname}/../public`)));
+app.use(express.static(path.normalize(`./${__dirname}/../../public`)));
 
 app.use('/', routes);
 app.use('/user', users);

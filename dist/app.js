@@ -117,7 +117,7 @@
 
 	// view engine setup
 	app.engine("hbs", (0, _expressHandlebars2.default)({ defaultLayout: "layout", extname: ".hbs" }));
-	app.set('views', _path2.default.normalize("./" + __dirname + "/../views"));
+	app.set('views', _path2.default.normalize("./" + __dirname + "/../../views"));
 	app.set('view engine', 'hbs');
 
 	// uncomment after placing your favicon in /public
@@ -137,7 +137,7 @@
 	app.use(_passport2.default.initialize());
 	app.use(_passport2.default.session());
 
-	app.use(_express2.default.static(_path2.default.normalize("./" + __dirname + "/../public")));
+	app.use(_express2.default.static(_path2.default.normalize("./" + __dirname + "/../../public")));
 
 	app.use('/', _index2.default);
 	app.use('/user', _users2.default);
@@ -176,7 +176,7 @@
 	app.listen(3000, function () {
 	  console.log("Server listening in port 3000");
 	});
-	/* WEBPACK VAR INJECTION */}.call(exports, "src"))
+	/* WEBPACK VAR INJECTION */}.call(exports, "src\\server"))
 
 /***/ },
 /* 1 */

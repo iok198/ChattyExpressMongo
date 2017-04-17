@@ -8,7 +8,7 @@ module.exports = [
             __dirname: true,
             __filename: true
         },
-        entry: "./src/app.js",
+        entry: "./src/server/app.js",
         output: {
             path: path.join(__dirname, "dist"),
             filename: "app.js"
