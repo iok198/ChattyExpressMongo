@@ -14,7 +14,7 @@ var ReactDOMServer = require("react-dom/server");
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
-var testReact = require("./src/testComponent.js");
+
 
 var app = express();
 
@@ -23,7 +23,7 @@ require("./passport");
 
 // view engine setup
 app.engine("hbs", hbs({defaultLayout: "layout", extname: ".hbs"}));
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.normalize("./" + __dirname + "/../views"));
 app.set('view engine', 'hbs');
 
 // uncomment after placing your favicon in /public
@@ -43,15 +43,7 @@ app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use(express.static(path.join(__dirname, 'public')));
-
-app.get("/tester", function(req, res) {
-  var renderedHTML = ReactDOMServer.renderToString(React.createElement(testReact.comp))
-  res.send(testReact.template({
-    body: renderedHTML,
-    title: "tester stuff"
-  }))
-})
+app.use(express.static(path.normalize("./" + __dirname + "/../public")));
 
 app.use('/', routes);
 app.use('/user', users);
@@ -87,7 +79,7 @@ app.use(function(err, req, res, next) {
   });
 });
 
-console.log("Server running on port 3000");
 
-
-module.exports = app;
+app.listen(3000, function() {
+  console.log("Server listening in port 3000")
+})
