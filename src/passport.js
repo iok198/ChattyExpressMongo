@@ -1,12 +1,12 @@
-var passport = require("passport");
-var LocatStratagy = require("passport-local");
-var User = require("./models/user.model");
+import passport from "passport"
+import LocatStratagy from "passport-local"
+import User from "./models/user.model"
 
-passport.serializeUser(function (user, done) {
+passport.serializeUser((user, done) => {
     done(null, user.id);
 });
 
-passport.deserializeUser(function (id, done) {
+passport.deserializeUser((id, done) => {
     User.findById(id, function (err, user) {
         done(err, user);
     });
@@ -16,8 +16,8 @@ passport.use("signup", new LocatStratagy({
     usernameField: "username",
     passwordField: "password",
     passReqToCallback: true
-}, function (req, username, password, done) {
-    User.findOne({username: username}, function (err, user) {
+}, (req, username, password, done) => {
+    User.findOne({username: username}, (err, user) => {
         if (err) {
             return done(err);
         }
@@ -31,7 +31,7 @@ passport.use("signup", new LocatStratagy({
             password
         });
 
-        newUser.save(function (err, theNewUser) {
+        newUser.save((err, theNewUser) => {
             if (err) {
                 return done(err);
             }
@@ -45,7 +45,7 @@ passport.use("signin", new LocatStratagy({
     usernameField: "username",
     passwordField: "password",
     passReqToCallback: true
-}, function (req, username, password, done) {
+}, (req, username, password, done) => {
     User.findOne({username: username}, function (err, user) {
         if (err) {
             return done(err);

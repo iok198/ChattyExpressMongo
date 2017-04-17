@@ -44,56 +44,103 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function(__dirname) {'use strict';
+	/* WEBPACK VAR INJECTION */(function(__dirname) {"use strict";
 
-	var express = __webpack_require__(1);
-	var path = __webpack_require__(2);
-	var favicon = __webpack_require__(3);
-	var logger = __webpack_require__(4);
-	var cookieParser = __webpack_require__(5);
-	var bodyParser = __webpack_require__(6);
-	var hbs = __webpack_require__(7);
-	var mongoose = __webpack_require__(8);
-	var passport = __webpack_require__(9);
-	var session = __webpack_require__(10);
-	var flash = __webpack_require__(11);
-	var React = __webpack_require__(12);
-	var ReactDOMServer = __webpack_require__(13);
+	var _express = __webpack_require__(1);
 
-	var routes = __webpack_require__(14);
-	var users = __webpack_require__(15);
+	var _express2 = _interopRequireDefault(_express);
 
-	var app = express();
+	var _path = __webpack_require__(2);
 
-	mongoose.connect("localhost/ChattyDB");
+	var _path2 = _interopRequireDefault(_path);
+
+	var _serveFavicon = __webpack_require__(3);
+
+	var _serveFavicon2 = _interopRequireDefault(_serveFavicon);
+
+	var _morgan = __webpack_require__(4);
+
+	var _morgan2 = _interopRequireDefault(_morgan);
+
+	var _cookieParser = __webpack_require__(5);
+
+	var _cookieParser2 = _interopRequireDefault(_cookieParser);
+
+	var _bodyParser = __webpack_require__(6);
+
+	var _bodyParser2 = _interopRequireDefault(_bodyParser);
+
+	var _expressHandlebars = __webpack_require__(7);
+
+	var _expressHandlebars2 = _interopRequireDefault(_expressHandlebars);
+
+	var _mongoose = __webpack_require__(8);
+
+	var _mongoose2 = _interopRequireDefault(_mongoose);
+
+	var _passport = __webpack_require__(9);
+
+	var _passport2 = _interopRequireDefault(_passport);
+
+	var _expressSession = __webpack_require__(10);
+
+	var _expressSession2 = _interopRequireDefault(_expressSession);
+
+	var _connectFlash = __webpack_require__(11);
+
+	var _connectFlash2 = _interopRequireDefault(_connectFlash);
+
+	var _react = __webpack_require__(12);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _server = __webpack_require__(13);
+
+	var _server2 = _interopRequireDefault(_server);
+
+	var _index = __webpack_require__(14);
+
+	var _index2 = _interopRequireDefault(_index);
+
+	var _users = __webpack_require__(15);
+
+	var _users2 = _interopRequireDefault(_users);
+
 	__webpack_require__(18);
 
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var app = (0, _express2.default)();
+
+	_mongoose2.default.connect("localhost/ChattyDB");
+
+
 	// view engine setup
-	app.engine("hbs", hbs({ defaultLayout: "layout", extname: ".hbs" }));
-	app.set('views', path.normalize("./" + __dirname + "/../views"));
+	app.engine("hbs", (0, _expressHandlebars2.default)({ defaultLayout: "layout", extname: ".hbs" }));
+	app.set('views', _path2.default.normalize("./" + __dirname + "/../views"));
 	app.set('view engine', 'hbs');
 
 	// uncomment after placing your favicon in /public
 	//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-	app.use(logger('dev'));
-	app.use(bodyParser.json());
-	app.use(bodyParser.urlencoded({ extended: false }));
-	app.use(cookieParser());
+	app.use((0, _morgan2.default)('dev'));
+	app.use(_bodyParser2.default.json());
+	app.use(_bodyParser2.default.urlencoded({ extended: false }));
+	app.use((0, _cookieParser2.default)());
 
-	app.use(session({
+	app.use((0, _expressSession2.default)({
 	  secret: "mysuperawesomesecretthatnoonecanbreak",
 	  resave: false,
 	  saveUninitialized: false
 	}));
-	app.use(flash());
+	app.use((0, _connectFlash2.default)());
 
-	app.use(passport.initialize());
-	app.use(passport.session());
+	app.use(_passport2.default.initialize());
+	app.use(_passport2.default.session());
 
-	app.use(express.static(path.normalize("./" + __dirname + "/../public")));
+	app.use(_express2.default.static(_path2.default.normalize("./" + __dirname + "/../public")));
 
-	app.use('/', routes);
-	app.use('/user', users);
+	app.use('/', _index2.default);
+	app.use('/user', _users2.default);
 
 	// catch 404 and forward to error handler
 	app.use(function (req, res, next) {
@@ -215,15 +262,24 @@
 
 	'use strict';
 
-	var express = __webpack_require__(1);
-	var router = express.Router();
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _express = __webpack_require__(1);
+
+	var _express2 = _interopRequireDefault(_express);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var router = _express2.default.Router();
 
 	/* GET home page. */
 	router.get('/', function (req, res, next) {
 	  res.render('index', { title: 'Express' });
 	});
 
-	module.exports = router;
+	exports.default = router;
 
 /***/ },
 /* 15 */
@@ -231,11 +287,25 @@
 
 	"use strict";
 
-	var express = __webpack_require__(1);
-	var router = express.Router();
-	var passport = __webpack_require__(9);
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
 
-	var User = __webpack_require__(16);
+	var _express = __webpack_require__(1);
+
+	var _express2 = _interopRequireDefault(_express);
+
+	var _passport = __webpack_require__(9);
+
+	var _passport2 = _interopRequireDefault(_passport);
+
+	var _user = __webpack_require__(16);
+
+	var _user2 = _interopRequireDefault(_user);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var router = _express2.default.Router();
 
 	/* GET users listing. */
 	router.get('/', function (req, res, next) {
@@ -251,7 +321,7 @@
 	  res.render('signin', { errors: messages, hasErrors: messages.length > 0 });
 	});
 
-	router.post('/signin', passport.authenticate('signin', {
+	router.post('/signin', _passport2.default.authenticate('signin', {
 	  failureRedirect: "/user/signin",
 	  failureFlash: true
 	}), function (req, res) {
@@ -263,7 +333,7 @@
 	  res.render('signup', { errors: messages, hasErrors: messages.length > 0 });
 	});
 
-	router.post('/signup', passport.authenticate('signup', {
+	router.post('/signup', _passport2.default.authenticate('signup', {
 	  failureRedirect: "/user/signup",
 	  failureFlash: true
 	}), function (req, res) {
@@ -278,7 +348,7 @@
 	  }
 	}
 
-	module.exports = router;
+	exports.default = router;
 
 /***/ },
 /* 16 */
@@ -319,26 +389,36 @@
 
 	"use strict";
 
-	var passport = __webpack_require__(9);
-	var LocatStratagy = __webpack_require__(19);
-	var User = __webpack_require__(16);
+	var _passport = __webpack_require__(9);
 
-	passport.serializeUser(function (user, done) {
+	var _passport2 = _interopRequireDefault(_passport);
+
+	var _passportLocal = __webpack_require__(19);
+
+	var _passportLocal2 = _interopRequireDefault(_passportLocal);
+
+	var _user = __webpack_require__(16);
+
+	var _user2 = _interopRequireDefault(_user);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	_passport2.default.serializeUser(function (user, done) {
 	    done(null, user.id);
 	});
 
-	passport.deserializeUser(function (id, done) {
-	    User.findById(id, function (err, user) {
+	_passport2.default.deserializeUser(function (id, done) {
+	    _user2.default.findById(id, function (err, user) {
 	        done(err, user);
 	    });
 	});
 
-	passport.use("signup", new LocatStratagy({
+	_passport2.default.use("signup", new _passportLocal2.default({
 	    usernameField: "username",
 	    passwordField: "password",
 	    passReqToCallback: true
 	}, function (req, username, password, done) {
-	    User.findOne({ username: username }, function (err, user) {
+	    _user2.default.findOne({ username: username }, function (err, user) {
 	        if (err) {
 	            return done(err);
 	        }
@@ -347,7 +427,7 @@
 	            return done(null, false, { message: "Username is already taken" });
 	        }
 
-	        var newUser = new User({
+	        var newUser = new _user2.default({
 	            username: username,
 	            password: password
 	        });
@@ -362,12 +442,12 @@
 	    });
 	}));
 
-	passport.use("signin", new LocatStratagy({
+	_passport2.default.use("signin", new _passportLocal2.default({
 	    usernameField: "username",
 	    passwordField: "password",
 	    passReqToCallback: true
 	}, function (req, username, password, done) {
-	    User.findOne({ username: username }, function (err, user) {
+	    _user2.default.findOne({ username: username }, function (err, user) {
 	        if (err) {
 	            return done(err);
 	        }

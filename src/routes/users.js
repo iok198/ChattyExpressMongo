@@ -1,19 +1,20 @@
-var express = require('express');
-var router = express.Router();
-var passport = require("passport");
+import express from "express"
+import passport from "passport"
 
-var User = require("../models/user.model");
+const router = express.Router();
+
+import User from "../models/user.model"
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
+router.get('/', (req, res, next) => {
   res.send('respond with a resource');
 });
 
-router.get('/profile', isLoggedIn, function(req, res) {
+router.get('/profile', isLoggedIn, (req, res) => {
   res.render('profile');
 })
 
-router.get('/signin', function(req, res) {
+router.get('/signin', (req, res) => {
   var messages = req.flash("error");
   res.render('signin', { errors: messages, hasErrors: messages.length > 0 });
 });
@@ -21,11 +22,11 @@ router.get('/signin', function(req, res) {
 router.post('/signin', passport.authenticate('signin', {
   failureRedirect: "/user/signin",
   failureFlash: true
-}), function(req, res) {
+}), (req, res) => {
   res.redirect("/user/profile");
 });
 
-router.get('/signup', function(req, res) {
+router.get('/signup', (req, res) => {
   var messages = req.flash("error");
   res.render('signup', { errors: messages, hasErrors: messages.length > 0 });
 });
@@ -33,7 +34,7 @@ router.get('/signup', function(req, res) {
 router.post('/signup', passport.authenticate('signup', {
   failureRedirect: "/user/signup",
   failureFlash: true
-}), function(req, res) {
+}), (req, res) => {
   res.redirect("/user/profile");
 });
 
@@ -45,4 +46,4 @@ function isLoggedIn(req, res, next) {
   }
 }
 
-module.exports = router;
+export default router
