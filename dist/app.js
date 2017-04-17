@@ -279,6 +279,10 @@
 	  res.render('index', { title: 'Express' });
 	});
 
+	router.get("/react", function (req, res) {
+	  res.render("react-view");
+	});
+
 	exports.default = router;
 
 /***/ },

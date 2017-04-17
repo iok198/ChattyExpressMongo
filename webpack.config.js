@@ -22,5 +22,21 @@ module.exports = [
                 }
             ]
         }
+    },
+    {
+        target: "web",
+        entry: "./src/client/App.js",
+        output: {
+            path: path.join(__dirname, "public", "javascripts"),
+            filename: "bundle.js"
+        },
+        module: {
+            loaders: [
+                {
+                    test: /\.js$/,
+                    loaders: ["babel-loader"]
+                }
+            ]
+        }
     }
 ]
