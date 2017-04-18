@@ -1,5 +1,8 @@
 import React from "react"
 import ReactDOM from "react-dom"
+import { Router, browserHistory } from "react-router"
+
+import TheRouter from "./routes"
 
 class Component extends React.Component {
     render() {
@@ -7,4 +10,4 @@ class Component extends React.Component {
     }
 }
 
-ReactDOM.render(<Component />, document.getElementById("demo"))
+ReactDOM.render(<TheRouter />, document.getElementById("demo"))

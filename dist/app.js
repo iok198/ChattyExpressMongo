@@ -260,7 +260,7 @@
 /* 14 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -275,11 +275,11 @@
 	var router = _express2.default.Router();
 
 	/* GET home page. */
-	router.get('/', function (req, res, next) {
-	  res.render('index', { title: 'Express' });
-	});
+	// router.get('/', (req, res, next) => {
+	//   res.render('index', { title: 'Express' });
+	// });
 
-	router.get("/react", function (req, res) {
+	router.get("/*", function (req, res) {
 	  res.render("react-view");
 	});
 

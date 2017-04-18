@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./dist/app.js",
+    "start": "nodemon ./dist/app.js",
     "test": "mocha"
   },
   "dependencies": {
@@ -16,12 +16,15 @@
     "express-handlebars": "^3.0.0",
     "express-session": "^1.15.2",
     "hbs": "~4.0.0",
+    "history": "^4.6.1",
     "mongoose": "^4.9.3",
     "morgan": "~1.7.0",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
+    "react-router": "^2.0.1",
+    "react-router-dom": "^4.1.1",
     "serve-favicon": "~2.3.0"
   },
   "devDependencies": {
@@ -30,6 +33,7 @@
     "babel-preset-react": "^6.24.1",
     "chai": "^3.5.0",
     "mocha": "^3.2.0",
+    "nodemon": "^1.11.0",
     "webpack": "^1.13.3",
     "webpack-node-externals": "^1.5.4"
   }
