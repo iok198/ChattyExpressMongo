@@ -36,7 +36,10 @@ router.post('/signup', passport.authenticate('signup', {
 }), function(req, res) {
   res.redirect("/user/profile");
 });
-
+router.get('/logout', function(req, res){
+  req.logout();
+  res.redirect('/user/signin');
+});
 function isLoggedIn(req, res, next) {
   if(req.isAuthenticated()) {
     return next();
