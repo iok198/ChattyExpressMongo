@@ -23,7 +23,7 @@ import "./passport"
 
 // view engine setup
 app.engine("hbs", hbs({defaultLayout: "layout", extname: ".hbs"}));
-app.set('views', path.normalize(`./${__dirname}/../../views`));
+app.set('views', path.normalize(__dirname + `/../../views`));
 app.set('view engine', 'hbs');
 
 // uncomment after placing your favicon in /public
