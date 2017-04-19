@@ -38,10 +38,8 @@ describe("User Tests", function() {
         });
     });
 
-    it("Deletes user properly",function() {
-        User.remove({username: "Test"}, function(err) {
-            assert(err, null);
-        });
+    it("Deletes user properly",function(done) {
+        User.remove({username: "Test"}, done);
     });
 
     after(function() {
