@@ -13,6 +13,7 @@ module.exports = [
             path: path.join(__dirname, "dist"),
             filename: "app.js"
         },
+          devtool: 'source-map',
         externals: [nodeExternals()],
         module: {
             loaders: [
@@ -30,6 +31,7 @@ module.exports = [
             path: path.join(__dirname, "public", "javascripts"),
             filename: "bundle.js"
         },
+            devtool: 'source-map',
         module: {
             loaders: [
                 {

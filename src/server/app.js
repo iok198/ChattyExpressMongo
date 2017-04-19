@@ -43,7 +43,7 @@ app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use(express.static(path.normalize(`./${__dirname}/../../public`)));
+app.use(express.static(path.normalize(`${__dirname}/../../public`)));
 
 app.use('/', routes);
 app.use('/user', users);

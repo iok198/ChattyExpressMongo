@@ -24,6 +24,7 @@ router.post('/signin', passport.authenticate('signin', {
   failureFlash: true
 }), (req, res) => {
   res.redirect("/user/profile");
+  console.log("hello")
 });
 
 router.get('/signup', (req, res) => {
