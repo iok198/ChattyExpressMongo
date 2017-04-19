@@ -8,6 +8,7 @@ What does this use?
 * MongoDB (mongoose as the ODM)
 * React
 * Passport
+* Socket.io
 
 To run this app, you must
 
