@@ -29,7 +29,7 @@ module.exports = [
         target: "web",
         entry: "./src/client/App.js",
         output: {
-            path: path.join(__dirname, "public", "javascripts"),
+            path: path.join(__dirname, "public", "javascripts", "react"),
             filename: "bundle.js"
         },
         devtool: 'source-map',

@@ -11,7 +11,7 @@ class SignupPage extends React.Component {
                     <input type="password" name="password" />
                     <input type="submit" />
                 </form>
-                <p>Already have an account? <Link to="/u/signin">Sign in</Link></p>
+                <p>Already have an account? <Link to="/signin">Sign in</Link></p>
             </div>
         )
     }
