@@ -110,11 +110,12 @@
 	
 	var app = (0, _express2.default)();
 	
-	app.use(_bodyParser2.default.urlencoded({ extended: true }));
+	app.use(_bodyParser2.default.urlencoded({ extended: false }));
+	app.use(_bodyParser2.default.json());
 	
 	_mongoose2.default.connect("localhost/ChattyDB");
 	
-	__webpack_require__(19);
+	__webpack_require__(18);
 	
 	// view engine setup
 	app.engine("hbs", (0, _expressHandlebars2.default)({ defaultLayout: "layout", extname: ".hbs" }));
@@ -306,9 +307,7 @@
 	
 	var _bodyParser2 = _interopRequireDefault(_bodyParser);
 	
-	var _formidable = __webpack_require__(16);
-	
-	var _user = __webpack_require__(17);
+	var _user = __webpack_require__(16);
 	
 	var _user2 = _interopRequireDefault(_user);
 	
@@ -316,14 +315,12 @@
 	
 	var router = _express2.default.Router();
 	
-	var urlParser = _bodyParser2.default.urlencoded({ extended: false });
-	
 	/* GET users listing. */
 	router.get('/', function (req, res, next) {
 	  res.send('respond with a resource');
 	});
 	
-	router.get('/profile', isLoggedIn, function (req, res) {
+	router.get('/profile', function (req, res) {
 	  res.render('profile');
 	});
 	
@@ -332,34 +329,27 @@
 	  res.render('signin', { errors: messages, hasErrors: messages.length > 0 });
 	});
 	
-	router.post('/signin', urlParser, function (req, res, next) {
-	  var form = new _formidable.IncomingForm();
+	router.post('/signin', function (req, res, next) {
 	
-	  form.parse(req, function (err, _ref, files) {
-	    var username = _ref.username,
-	        password = _ref.password;
-	
-	    console.log(username, password);
-	  });
 	  _passport2.default.authenticate("signin", function (err, user, info) {
 	    if (err) {
 	      return next(err);
 	    }
 	
-	    console.log(err + " " + user + " " + Object.keys(info));
+	    console.log(err, user, info);
 	
-	    // if (!user) {
-	    //   return res.json({ success: false, error: info.message })
-	    // }
+	    if (!user) {
+	      return res.json({ success: false, error: info.message });
+	    }
 	
 	    req.logIn(user, function (error) {
 	      if (error) {
 	        return next(error);
 	      }
 	
-	      req.user = user;
+	      // req.user = user
 	
-	      return res.json({ success: true, error: null });
+	      return res.json({ success: true, user: user });
 	    });
 	  })(req, res, next);
 	});
@@ -376,16 +366,6 @@
 	  res.redirect("/user/profile");
 	});
 	
-	router.post("/tester", function (req, res) {
-	  var form = new _formidable.IncomingForm();
-	  form.parse(req, function (err, _ref2, files) {
-	    var username = _ref2.username,
-	        password = _ref2.password;
-	
-	    console.log("Username: " + username + "\n    Password: " + password + "\n    ");
-	  });
-	});
-	
 	function isLoggedIn(req, res, next) {
 	  if (req.isAuthenticated()) {
 	    return next();
@@ -398,12 +378,6 @@
 
 /***/ }),
 /* 16 */
-/***/ (function(module, exports) {
-
-	module.exports = require("formidable");
-
-/***/ }),
-/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -416,7 +390,7 @@
 	
 	var _mongoose2 = _interopRequireDefault(_mongoose);
 	
-	var _bcryptNodejs = __webpack_require__(18);
+	var _bcryptNodejs = __webpack_require__(17);
 	
 	var _bcryptNodejs2 = _interopRequireDefault(_bcryptNodejs);
 	
@@ -441,13 +415,13 @@
 	exports.default = User;
 
 /***/ }),
-/* 18 */
+/* 17 */
 /***/ (function(module, exports) {
 
 	module.exports = require("bcrypt-nodejs");
 
 /***/ }),
-/* 19 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -456,15 +430,13 @@
 	
 	var _passport2 = _interopRequireDefault(_passport);
 	
-	var _passportLocal = __webpack_require__(20);
+	var _passportLocal = __webpack_require__(19);
 	
 	var _passportLocal2 = _interopRequireDefault(_passportLocal);
 	
-	var _user = __webpack_require__(17);
+	var _user = __webpack_require__(16);
 	
 	var _user2 = _interopRequireDefault(_user);
-	
-	var _formidable = __webpack_require__(16);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -479,73 +451,68 @@
 	});
 	
 	_passport2.default.use("signup", new _passportLocal2.default({
+	    usernameField: "username",
+	    passwordField: "password",
 	    passReqToCallback: true
-	}, function (req, u, p, done) {
-	    var form = new _formidable.IncomingForm();
-	
-	    form.parse(req, function (err, _ref, files) {
-	        var username = _ref.username,
-	            password = _ref.password;
+	}, function (req, usernameField, passwordField, done) {
+	    var _req$body = req.body,
+	        username = _req$body.username,
+	        password = _req$body.password;
 	
 	
-	        _user2.default.findOne({ username: username }, function (err, user) {
+	    _user2.default.findOne({ username: username }, function (err, user) {
+	        if (err) {
+	            return done(err);
+	        }
+	
+	        if (user) {
+	            return done(null, false, { message: "Username is already taken" });
+	        }
+	
+	        var newUser = new _user2.default({
+	            username: username,
+	            password: password
+	        });
+	
+	        newUser.save(function (err, theNewUser) {
 	            if (err) {
 	                return done(err);
 	            }
 	
-	            if (user) {
-	                return done(null, false, { message: "Username is already taken" });
-	            }
-	
-	            var newUser = new _user2.default({
-	                username: username,
-	                password: password
-	            });
-	
-	            newUser.save(function (err, theNewUser) {
-	                if (err) {
-	                    return done(err);
-	                }
-	
-	                return done(null, theNewUser);
-	            });
+	            return done(null, theNewUser);
 	        });
 	    });
 	}));
 	
 	_passport2.default.use("signin", new _passportLocal2.default({
+	    usernameField: "username",
+	    passwordField: "password",
 	    passReqToCallback: true
-	}, function (req, u, p, done) {
-	
-	    var form = new _formidable.IncomingForm();
-	
-	    console.log("HELP!!!!");
-	
-	    form.parse(req, function (err, _ref2, files) {
-	        var username = _ref2.username,
-	            password = _ref2.password;
+	}, function (req, usernameField, passwordField, done) {
+	    var _req$body2 = req.body,
+	        username = _req$body2.username,
+	        password = _req$body2.password;
 	
 	
-	        _user2.default.findOne({ username: username }, function (err, user) {
-	            if (err) {
-	                return done(err);
-	            }
+	    _user2.default.findOne({ username: username }, function (err, user) {
+	        if (err) {
+	            return done(err);
+	        }
 	
-	            if (!user) {
-	                return done(null, false, { message: "Username not found" });
-	            }
+	        if (!user) {
+	            return done(null, false, { message: "Username not found" });
+	        }
 	
-	            if (!user.validPassword(password)) {
-	                return done(null, false, { message: "Invalid Password" });
-	            }
+	        if (!user.validPassword(password)) {
+	            return done(null, false, { message: "Invalid Password" });
+	        }
 	
-	            return done(null, user);
-	        });
+	        return done(null, user);
 	    });
 	}));
 
 /***/ }),
-/* 20 */
+/* 19 */
 /***/ (function(module, exports) {
 
 	module.exports = require("passport-local");

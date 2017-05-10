@@ -11,7 +11,7 @@ class SigninPage extends React.Component {
                     <input type="password" name="password" />
                     <input type="submit" />
                 </form>
-                <p>Don't have an account? <Link to="/signup">Sign up</Link></p>
+                <p>Don't have an account? <Link to="/user/signup">Sign up</Link></p>
             </div>
         )
     }

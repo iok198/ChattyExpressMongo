@@ -1,7 +1,6 @@
 import passport from "passport"
-import LocatStratagy from "passport-local"
+import LocalStratagy from "passport-local"
 import User from "./models/user.model"
-import { IncomingForm } from "formidable"
 
 passport.serializeUser((user, done) => {
     done(null, user.id);
@@ -13,63 +12,60 @@ passport.deserializeUser((id, done) => {
     });
 });
 
-passport.use("signup", new LocatStratagy({
+passport.use("signup", new LocalStratagy({
+    usernameField: "username",
+    passwordField: "password",
     passReqToCallback: true
-}, (req, u, p, done) => {
-    var form = new IncomingForm()
+}, (req, usernameField, passwordField, done) => {
+    var { username, password } = req.body
+    
+    User.findOne({ username }, (err, user) => {
+        if (err) {
+            return done(err);
+        }
 
-    form.parse(req, (err, { username, password }, files) => {
+        if (user) {
+            return done(null, false, { message: "Username is already taken" });
+        }
 
-        User.findOne({ username }, (err, user) => {
+        var newUser = new User({
+            username,
+            password
+        });
+
+        newUser.save((err, theNewUser) => {
             if (err) {
                 return done(err);
             }
 
-            if (user) {
-                return done(null, false, { message: "Username is already taken" });
-            }
-
-            var newUser = new User({
-                username,
-                password
-            });
-
-            newUser.save((err, theNewUser) => {
-                if (err) {
-                    return done(err);
-                }
-
-                return done(null, theNewUser);
-            });
+            return done(null, theNewUser);
         });
-    })
+    });
+  
 
 }));
 
-passport.use("signin", new LocatStratagy({
+passport.use("signin", new LocalStratagy({
+    usernameField: "username",
+    passwordField: "password",
     passReqToCallback: true
-}, (req, u, p, done) => {
+}, (req, usernameField, passwordField, done) => {
+    var { username, password } = req.body
 
-    var form = new IncomingForm()
+    User.findOne({ username }, function (err, user) {
+        if (err) {
+            return done(err);
+        }
 
-    console.log("HELP!!!!")
+        if (!user) {
+            return done(null, false, { message: "Username not found" });
+        }
 
-    form.parse(req, (err, { username, password }, files) => {
+        if (!user.validPassword(password)) {
+            return done(null, false, { message: "Invalid Password" })
+        }
 
-        User.findOne({ username }, function (err, user) {
-            if (err) {
-                return done(err);
-            }
+        return done(null, user)
+    });
 
-            if (!user) {
-                return done(null, false, { message: "Username not found" });
-            }
-
-            if (!user.validPassword(password)) {
-                return done(null, false, { message: "Invalid Password" })
-            }
-
-            return done(null, user)
-        });
-    })
 }));

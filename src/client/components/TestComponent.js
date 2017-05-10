@@ -1,21 +1,34 @@
 import React from "react"
 
 class TestComponent extends React.Component {
+
+    
     constructor(props, context) {
         super(props, context)
+
+        this.state = {
+            username: "",
+            password: ""
+        }
+
+        this.changeValue = this.changeValue.bind(this)
+        this.handleSumbit = this.handleSumbit.bind(this)
     }
 
-    handleClick() {
+    changeRoute() {
         this.props.history.replace("/")
     }
 
     handleSumbit(e) {
         e.preventDefault()
-        var formData = new FormData(this.form)
 
         fetch("/user/signin", {
             method: "POST",
-            body: formData
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(this.state)
         })
         .then(r => r.json())
         .then(result => {
@@ -23,15 +36,21 @@ class TestComponent extends React.Component {
         })
     }
 
+    changeValue(e) {
+        this.setState({
+            [e.target.name]: e.target.value
+        })
+    }
+
     render() {
         return (
             <div>
-                <button onClick={this.handleClick.bind(this)}>Go home!</button>
-                <form onSubmit={this.handleSumbit.bind(this)} ref={(form) => this.form = form}>
-                    <input type="text" name="username" /> <br />
-                    <input type="password" name="password"/> <br />
-                    <input type="submit"/> <br />
-                </form>
+                <button onClick={this.changeRoute.bind(this)}>Go home!</button>
+                <div>
+                    <input type="text" name="username" onChange={this.changeValue}/> <br />
+                    <input type="password" name="password" onChange={this.changeValue}/> <br />
+                    <input type="button" value="Submit" onClick={this.handleSumbit}/> <br />
+                </div>
             </div>
         )
     }
