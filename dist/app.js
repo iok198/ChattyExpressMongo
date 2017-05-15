@@ -44,65 +44,73 @@
 /* 0 */
 /***/ (function(module, exports, __webpack_require__) {
 
+	__webpack_require__(1);
+	(function webpackMissingModule() { throw new Error("Cannot find module \"build\""); }());
+
+
+/***/ }),
+/* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
 	/* WEBPACK VAR INJECTION */(function(__dirname) {"use strict";
 	
-	var _express = __webpack_require__(1);
+	var _express = __webpack_require__(2);
 	
 	var _express2 = _interopRequireDefault(_express);
 	
-	var _path = __webpack_require__(2);
+	var _path = __webpack_require__(3);
 	
 	var _path2 = _interopRequireDefault(_path);
 	
-	var _serveFavicon = __webpack_require__(3);
+	var _serveFavicon = __webpack_require__(4);
 	
 	var _serveFavicon2 = _interopRequireDefault(_serveFavicon);
 	
-	var _morgan = __webpack_require__(4);
+	var _morgan = __webpack_require__(5);
 	
 	var _morgan2 = _interopRequireDefault(_morgan);
 	
-	var _cookieParser = __webpack_require__(5);
+	var _cookieParser = __webpack_require__(6);
 	
 	var _cookieParser2 = _interopRequireDefault(_cookieParser);
 	
-	var _bodyParser = __webpack_require__(6);
+	var _bodyParser = __webpack_require__(7);
 	
 	var _bodyParser2 = _interopRequireDefault(_bodyParser);
 	
-	var _expressHandlebars = __webpack_require__(7);
+	var _expressHandlebars = __webpack_require__(8);
 	
 	var _expressHandlebars2 = _interopRequireDefault(_expressHandlebars);
 	
-	var _mongoose = __webpack_require__(8);
+	var _mongoose = __webpack_require__(9);
 	
 	var _mongoose2 = _interopRequireDefault(_mongoose);
 	
-	var _passport = __webpack_require__(9);
+	var _passport = __webpack_require__(10);
 	
 	var _passport2 = _interopRequireDefault(_passport);
 	
-	var _expressSession = __webpack_require__(10);
+	var _expressSession = __webpack_require__(11);
 	
 	var _expressSession2 = _interopRequireDefault(_expressSession);
 	
-	var _connectFlash = __webpack_require__(11);
+	var _connectFlash = __webpack_require__(12);
 	
 	var _connectFlash2 = _interopRequireDefault(_connectFlash);
 	
-	var _react = __webpack_require__(12);
+	var _react = __webpack_require__(13);
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _server = __webpack_require__(13);
+	var _server = __webpack_require__(14);
 	
 	var _server2 = _interopRequireDefault(_server);
 	
-	var _index = __webpack_require__(14);
+	var _index = __webpack_require__(15);
 	
 	var _index2 = _interopRequireDefault(_index);
 	
-	var _users = __webpack_require__(15);
+	var _users = __webpack_require__(16);
 	
 	var _users2 = _interopRequireDefault(_users);
 	
@@ -115,7 +123,7 @@
 	
 	_mongoose2.default.connect("localhost/ChattyDB");
 	
-	__webpack_require__(18);
+	__webpack_require__(19);
 	
 	// view engine setup
 	app.engine("hbs", (0, _expressHandlebars2.default)({ defaultLayout: "layout", extname: ".hbs" }));
@@ -179,85 +187,85 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, "src/server"))
 
 /***/ }),
-/* 1 */
+/* 2 */
 /***/ (function(module, exports) {
 
 	module.exports = require("express");
 
 /***/ }),
-/* 2 */
+/* 3 */
 /***/ (function(module, exports) {
 
 	module.exports = require("path");
 
 /***/ }),
-/* 3 */
+/* 4 */
 /***/ (function(module, exports) {
 
 	module.exports = require("serve-favicon");
 
 /***/ }),
-/* 4 */
+/* 5 */
 /***/ (function(module, exports) {
 
 	module.exports = require("morgan");
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, exports) {
 
 	module.exports = require("cookie-parser");
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports) {
 
 	module.exports = require("body-parser");
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports) {
 
 	module.exports = require("express-handlebars");
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports) {
 
 	module.exports = require("mongoose");
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports) {
 
 	module.exports = require("passport");
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports) {
 
 	module.exports = require("express-session");
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports) {
 
 	module.exports = require("connect-flash");
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, exports) {
 
 	module.exports = require("react");
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, exports) {
 
 	module.exports = require("react-dom/server");
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -266,7 +274,7 @@
 	  value: true
 	});
 	
-	var _express = __webpack_require__(1);
+	var _express = __webpack_require__(2);
 	
 	var _express2 = _interopRequireDefault(_express);
 	
@@ -286,7 +294,7 @@
 	exports.default = router;
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -295,19 +303,19 @@
 	  value: true
 	});
 	
-	var _express = __webpack_require__(1);
+	var _express = __webpack_require__(2);
 	
 	var _express2 = _interopRequireDefault(_express);
 	
-	var _passport = __webpack_require__(9);
+	var _passport = __webpack_require__(10);
 	
 	var _passport2 = _interopRequireDefault(_passport);
 	
-	var _bodyParser = __webpack_require__(6);
+	var _bodyParser = __webpack_require__(7);
 	
 	var _bodyParser2 = _interopRequireDefault(_bodyParser);
 	
-	var _user = __webpack_require__(16);
+	var _user = __webpack_require__(17);
 	
 	var _user2 = _interopRequireDefault(_user);
 	
@@ -377,7 +385,7 @@
 	exports.default = router;
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -386,11 +394,11 @@
 	    value: true
 	});
 	
-	var _mongoose = __webpack_require__(8);
+	var _mongoose = __webpack_require__(9);
 	
 	var _mongoose2 = _interopRequireDefault(_mongoose);
 	
-	var _bcryptNodejs = __webpack_require__(17);
+	var _bcryptNodejs = __webpack_require__(18);
 	
 	var _bcryptNodejs2 = _interopRequireDefault(_bcryptNodejs);
 	
@@ -415,26 +423,26 @@
 	exports.default = User;
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, exports) {
 
 	module.exports = require("bcrypt-nodejs");
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
 	
-	var _passport = __webpack_require__(9);
+	var _passport = __webpack_require__(10);
 	
 	var _passport2 = _interopRequireDefault(_passport);
 	
-	var _passportLocal = __webpack_require__(19);
+	var _passportLocal = __webpack_require__(20);
 	
 	var _passportLocal2 = _interopRequireDefault(_passportLocal);
 	
-	var _user = __webpack_require__(16);
+	var _user = __webpack_require__(17);
 	
 	var _user2 = _interopRequireDefault(_user);
 	
@@ -512,7 +520,7 @@
 	}));
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, exports) {
 
 	module.exports = require("passport-local");

@@ -30,7 +30,7 @@ node_modules
 npm-debug.log
 
 # Dist code compiled from webpack 
-dist
+dist/**/*.*
 public/javascripts/react/
 
 # For vscode specific things
