@@ -32,3 +32,6 @@ npm-debug.log
 # Dist code compiled from webpack 
 dist/
 public/javascripts/react/
+
+# For vscode specific things
+.vscode
