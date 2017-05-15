@@ -176,7 +176,7 @@
 	app.listen(3000, function () {
 	  console.log("Server listening in port 3000");
 	});
-	/* WEBPACK VAR INJECTION */}.call(exports, "src\\server"))
+	/* WEBPACK VAR INJECTION */}.call(exports, "src/server"))
 
 /***/ }),
 /* 1 */
