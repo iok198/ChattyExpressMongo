@@ -10,7 +10,7 @@ import passport from "passport"
 import session from "express-session"
 import flash from "connect-flash"
 import React from "react"
-import ReactDOMServer from "react-dom/server";
+import ReactDOMServer from "react-dom/server"
 
 import routes from "./routes/index"
 import users from "./routes/users"
@@ -28,7 +28,7 @@ require("./passport")
 
 // view engine setup
 app.engine("hbs", hbs({defaultLayout: "layout", extname: ".hbs"}));
-app.set('views', path.normalize(__dirname + `/../../views`));
+app.set('views', path.join(__dirname, "..", "..", "views"));
 app.set('view engine', 'hbs');
 
 // uncomment after placing your favicon in /public
