@@ -50,11 +50,27 @@ router.get('/signup', (req, res) => {
   res.render('signup', { errors: messages, hasErrors: messages.length > 0 });
 });
 
-router.post('/signup', passport.authenticate('signup', {
-  failureRedirect: "/user/signup",
-  failureFlash: true
-}), (req, res) => {
-  res.redirect("/user/profile");
+router.post('/signup', (req, res) => {
+  passport.authenticate("signup", (err, newUser, info) => {
+    if (err) {
+      res.json({ success: false, error: err.message })
+    }
+
+    if(info) {
+      res.json({ success: false, error: info.message })
+    }
+
+    req.logIn(newUser, error => {
+      if(error) {
+        return res.json({ success: false, error })
+      }
+
+      return res.json({
+        success: true,
+        user: newUser
+      })
+    })
+  })
 });
 
 function isLoggedIn(req, res, next) {
