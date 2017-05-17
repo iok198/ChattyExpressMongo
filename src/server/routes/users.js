@@ -70,7 +70,7 @@ router.post('/signup', (req, res) => {
         user: newUser
       })
     })
-  })
+  })(req, res)
 });
 
 function isLoggedIn(req, res, next) {
