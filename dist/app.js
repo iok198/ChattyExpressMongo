@@ -127,7 +127,7 @@
 	
 	// view engine setup
 	app.engine("hbs", (0, _expressHandlebars2.default)({ defaultLayout: "layout", extname: ".hbs" }));
-	app.set('views', _path2.default.normalize(__dirname + "/../../views"));
+	app.set('views', _path2.default.join(__dirname, "..", "..", "views"));
 	app.set('view engine', 'hbs');
 	
 	// uncomment after placing your favicon in /public
@@ -367,11 +367,27 @@
 	  res.render('signup', { errors: messages, hasErrors: messages.length > 0 });
 	});
 	
-	router.post('/signup', _passport2.default.authenticate('signup', {
-	  failureRedirect: "/user/signup",
-	  failureFlash: true
-	}), function (req, res) {
-	  res.redirect("/user/profile");
+	router.post('/signup', function (req, res) {
+	  _passport2.default.authenticate("signup", function (err, newUser, info) {
+	    if (err) {
+	      res.json({ success: false, error: err.message });
+	    }
+	
+	    if (info) {
+	      res.json({ success: false, error: info.message });
+	    }
+	
+	    req.logIn(newUser, function (error) {
+	      if (error) {
+	        return res.json({ success: false, error: error });
+	      }
+	
+	      return res.json({
+	        success: true,
+	        user: newUser
+	      });
+	    });
+	  });
 	});
 	
 	function isLoggedIn(req, res, next) {
@@ -461,12 +477,10 @@
 	_passport2.default.use("signup", new _passportLocal2.default({
 	    usernameField: "username",
 	    passwordField: "password",
+	    session: false,
 	    passReqToCallback: true
-	}, function (req, usernameField, passwordField, done) {
-	    var _req$body = req.body,
-	        username = _req$body.username,
-	        password = _req$body.password;
 	
+	}, function (req, username, password, done) {
 	
 	    _user2.default.findOne({ username: username }, function (err, user) {
 	        if (err) {
@@ -495,12 +509,9 @@
 	_passport2.default.use("signin", new _passportLocal2.default({
 	    usernameField: "username",
 	    passwordField: "password",
+	    session: false,
 	    passReqToCallback: true
-	}, function (req, usernameField, passwordField, done) {
-	    var _req$body2 = req.body,
-	        username = _req$body2.username,
-	        password = _req$body2.password;
-	
+	}, function (req, username, password, done) {
 	
 	    _user2.default.findOne({ username: username }, function (err, user) {
 	        if (err) {

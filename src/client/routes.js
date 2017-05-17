@@ -20,10 +20,11 @@ class TheRouter extends React.Component {
                 <Route path="/">
                     <IndexRoute component={HomePage} />
                     <Route path="tester" component={TestComponent} />
+                    <Route path="signin" component={SigninPage} />
+                    <Route path="signup" component={SignupPage} />
                     <Route path="user">
-                        <IndexRoute component={ProfilePage} />
-                        <Route path="signin" component={SigninPage} />
-                        <Route path="signup" component={SignupPage} />
+                        <Route path="profile" component={ProfilePage}/>
+                        <IndexRoute component={ProfilePage}/>
                     </Route>
                 </Route>
             </Router>
