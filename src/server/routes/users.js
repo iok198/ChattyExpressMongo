@@ -53,11 +53,11 @@ router.get('/signup', (req, res) => {
 router.post('/signup', (req, res) => {
   passport.authenticate("signup", (err, newUser, info) => {
     if (err) {
-      res.json({ success: false, error: err.message })
+      return res.json({ success: false, error: err.message })
     }
 
     if(info) {
-      res.json({ success: false, error: info.message })
+      return res.json({ success: false, error: info.message })
     }
 
     req.logIn(newUser, error => {

@@ -7,7 +7,8 @@ class SigninPage extends React.Component {
 
         this.state = {
             username: "",
-            password: ""
+            password: "",
+            error: ""
         }
 
         this.handleSubmit = this.handleSubmit.bind(this)
@@ -27,7 +28,13 @@ class SigninPage extends React.Component {
         })
         .then(r => r.json())
         .then(result => {
-            console.log(result)
+            if(result.success) {
+                this.props.history.push("/user")
+            } else {
+                this.setState({
+                    error: result.error
+                })
+            }
         })
     }
 
@@ -41,6 +48,9 @@ class SigninPage extends React.Component {
         return (
             <div>
                 <h1>Sign in</h1>
+                <div style={{color: "red"}}>
+                    {this.state.error}
+                </div>
                 <form onSubmit={this.handleSubmit}>
                     <input type="text" name="username" onChange={this.handleChange}/>
                     <input type="password" name="password" onChange={this.handleChange}/>
