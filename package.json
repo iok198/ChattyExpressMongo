@@ -4,7 +4,13 @@
   "private": true,
   "scripts": {
     "start": "nodemon ./dist/app.js",
-    "test": "mocha"
+    "test": "mocha",
+    "build": "webpack --config ./webpack.full.js",
+    "build:client": "webpack --config ./webpack/webpack.client.js",
+    "build:server": "webpack --config ./webpack/webpack.server.js",
+    "watch": "webpack --config ./webpack/webpack.full.js --watch",
+    "watch:client": "webpack --config ./webpack/webpack.client.js --watch",
+    "watch:server": "webpack --config ./webpack/webpack.server.js --watch"
   },
   "dependencies": {
     "babel-core": "^6.24.1",
