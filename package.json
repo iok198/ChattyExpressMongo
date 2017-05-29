@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "nodemon ./dist/app.js",
-    "test": "mocha",
+    "test": "mocha-webpack --webpack-config ./webpack/webpack.test.js \"test/**/*.js\"",
     "build": "webpack --config ./webpack.full.js",
     "build:client": "webpack --config ./webpack/webpack.client.js",
     "build:server": "webpack --config ./webpack/webpack.server.js",
@@ -25,6 +25,7 @@
     "hbs": "~4.0.0",
     "history": "^4.6.1",
     "jsonwebtoken": "^7.4.0",
+    "mocha-webpack": "^0.7.0",
     "mongoose": "^4.9.3",
     "morgan": "~1.7.0",
     "passport": "^0.3.2",

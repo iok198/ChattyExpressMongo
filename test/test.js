@@ -1,8 +1,8 @@
-var User = require("../models/user.model");
-var expect = require("chai").expect;
-var assert = require("assert");
-var bcrypt = require("bcrypt-nodejs");
-var mongoose = require("mongoose");
+import User from "../src/server/models/user.model"
+import { expect } from "chai"
+import assert from "assert"
+import bcrypt from "bcrypt-nodejs"
+import mongoose from "mongoose"
 
 describe("User Tests", function() {
 
