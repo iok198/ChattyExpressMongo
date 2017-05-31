@@ -5,6 +5,7 @@
   "scripts": {
     "start": "nodemon ./dist/app.js",
     "test": "mocha-webpack --webpack-config ./webpack/webpack.test.js \"test/**/*.js\"",
+    "lint": "eslint src",
     "build": "webpack --config ./webpack/webpack.full.js",
     "build:client": "webpack --config ./webpack/webpack.client.js",
     "build:server": "webpack --config ./webpack/webpack.server.js",
