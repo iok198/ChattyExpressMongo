@@ -28,10 +28,10 @@ class TestComponent extends React.Component {
       },
       body: JSON.stringify(this.state)
     })
-        .then(r => r.json())
-        .then(result => {
-          console.log(result)
-        })
+    .then(r => r.json())
+    .then(result => {
+      console.log(result)
+    })
   }
 
   changeValue (e) {

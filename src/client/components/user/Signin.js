@@ -26,16 +26,16 @@ class SigninPage extends React.Component {
       },
       body: JSON.stringify(this.state)
     })
-        .then(r => r.json())
-        .then(result => {
-          if (result.success) {
-            this.props.history.push("/user")
-          } else {
-            this.setState({
-              error: result.error
-            })
-          }
+    .then(r => r.json())
+    .then(result => {
+      if (result.success) {
+        this.props.history.push("/user")
+      } else {
+        this.setState({
+          error: result.error
         })
+      }
+    })
   }
 
   handleChange (e) {
