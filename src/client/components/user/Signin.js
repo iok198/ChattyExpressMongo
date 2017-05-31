@@ -56,7 +56,7 @@ class SigninPage extends React.Component {
                     <input type="password" name="password" onChange={this.handleChange}/>
                     <input type="submit" />
                 </form>
-                <p>Don't have an account? <Link to="/signup">Sign up</Link></p>
+                <p>{"Don't"} have an account? <Link to="/signup">Sign up</Link></p>
             </div>
     )
   }
