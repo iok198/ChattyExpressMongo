@@ -1,49 +1,47 @@
 import React from "react"
 
 class TestComponent extends React.Component {
+  constructor (props, context) {
+    super(props, context)
 
-    
-    constructor(props, context) {
-        super(props, context)
-
-        this.state = {
-            username: "",
-            password: ""
-        }
-
-        this.changeValue = this.changeValue.bind(this)
-        this.handleSumbit = this.handleSumbit.bind(this)
+    this.state = {
+      username: "",
+      password: ""
     }
 
-    changeRoute() {
-        this.props.history.replace("/")
-    }
+    this.changeValue = this.changeValue.bind(this)
+    this.handleSumbit = this.handleSumbit.bind(this)
+  }
 
-    handleSumbit(e) {
-        e.preventDefault()
+  changeRoute () {
+    this.props.history.replace("/")
+  }
 
-        fetch("/user/signin", {
-            method: "POST",
-            headers: {
-                "Accept": "application/json",
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(this.state)
-        })
+  handleSumbit (e) {
+    e.preventDefault()
+
+    fetch("/user/signin", {
+      method: "POST",
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(this.state)
+    })
         .then(r => r.json())
         .then(result => {
-            console.log(result)
+          console.log(result)
         })
-    }
+  }
 
-    changeValue(e) {
-        this.setState({
-            [e.target.name]: e.target.value
-        })
-    }
+  changeValue (e) {
+    this.setState({
+      [e.target.name]: e.target.value
+    })
+  }
 
-    render() {
-        return (
+  render () {
+    return (
             <div>
                 <button onClick={this.changeRoute.bind(this)}>Go home!</button>
                 <div>
@@ -52,8 +50,8 @@ class TestComponent extends React.Component {
                     <input type="button" value="Submit" onClick={this.handleSumbit}/> <br />
                 </div>
             </div>
-        )
-    }
+    )
+  }
 }
 
 export default TestComponent

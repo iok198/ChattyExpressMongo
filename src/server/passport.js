@@ -3,70 +3,65 @@ import LocalStratagy from "passport-local"
 import User from "./models/user.model"
 
 passport.serializeUser((user, done) => {
-    done(null, user.id);
-});
+  done(null, user.id)
+})
 
 passport.deserializeUser((id, done) => {
-    User.findById(id, function (err, user) {
-        done(err, user);
-    });
-});
+  User.findById(id, function (err, user) {
+    done(err, user)
+  })
+})
 
 passport.use("signup", new LocalStratagy({
-    usernameField: "username",
-    passwordField: "password",
-    session: false,
-    passReqToCallback: true,
-    
+  usernameField: "username",
+  passwordField: "password",
+  session: false,
+  passReqToCallback: true
+
 }, (req, username, password, done) => {
-    
-    User.findOne({ username }, (err, user) => {
-        if (err) {
-            return done(err);
-        }
+  User.findOne({ username }, (err, user) => {
+    if (err) {
+      return done(err)
+    }
 
-        if (user) {
-            return done(null, false, { message: "Username is already taken" });
-        }
+    if (user) {
+      return done(null, false, { message: "Username is already taken" })
+    }
 
-        var newUser = new User({
-            username,
-            password
-        });
+    var newUser = new User({
+      username,
+      password
+    })
 
-        newUser.save((err, theNewUser) => {
-            if (err) {
-                return done(err);
-            }
+    newUser.save((err, theNewUser) => {
+      if (err) {
+        return done(err)
+      }
 
-            return done(null, theNewUser);
-        });
-    });
-  
-
-}));
+      return done(null, theNewUser)
+    })
+  })
+}))
 
 passport.use("signin", new LocalStratagy({
-    usernameField: "username",
-    passwordField: "password",
-    session: false,
-    passReqToCallback: true
+  usernameField: "username",
+  passwordField: "password",
+  session: false,
+  passReqToCallback: true
 }, (req, username, password, done) => {
+  User.findOne({ username }, function (err, user) {
+    if (err) {
+      return done(err)
+    }
 
-    User.findOne({ username }, function (err, user) {
-        if (err) {
-            return done(err);
-        }
+    if (!user) {
+      return done(null, false, { message: "Username not found" })
+    }
 
-        if (!user) {
-            return done(null, false, { message: "Username not found" });
-        }
+    if (!user.validPassword(password)) {
+      return done(null, false, { message: "Invalid Password" })
+    }
 
-        if (!user.validPassword(password)) {
-            return done(null, false, { message: "Invalid Password" })
-        }
-
-        return done(null, user)
-    });
-
-}));
+    return done(null, user)
+  })
+}))

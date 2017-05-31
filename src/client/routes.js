@@ -1,6 +1,4 @@
-// import { BrowserRouter as Router, Route, IndexRoute } from "react-router-dom"
-import { Router, Route, Switch, Redirect, browserHistory, IndexRoute } from "react-router"
-import { createBrowserHistory } from "history"
+import { Router, Route, browserHistory, IndexRoute } from "react-router"
 
 import HomePage from "./components/Homepage"
 import LayoutPage from "./components/Layout"
@@ -14,10 +12,10 @@ import TestComponent from "./components/TestComponent"
 import React from "react"
 
 class TheRouter extends React.Component {
-    render() {
-        return (
+  render () {
+    return (
             <Router history={browserHistory}>
-                <Route path="/">
+                <Route path="/" component={LayoutPage}>
                     <IndexRoute component={HomePage} />
                     <Route path="tester" component={TestComponent} />
                     <Route path="signin" component={SigninPage} />
@@ -28,9 +26,8 @@ class TheRouter extends React.Component {
                     </Route>
                 </Route>
             </Router>
-        )
-
-    }
+    )
+  }
 }
 
 export default TheRouter

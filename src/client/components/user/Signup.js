@@ -2,50 +2,50 @@ import React from "react"
 import { Link } from "react-router"
 
 class SignupPage extends React.Component {
-    constructor(props) {
-        super(props)
+  constructor (props) {
+    super(props)
 
-        this.state = {
-            username: "",
-            password: "",
-            error: ""
-        }
-
-        this.handleSubmit = this.handleSubmit.bind(this)
-        this.handleChange = this.handleChange.bind(this)
+    this.state = {
+      username: "",
+      password: "",
+      error: ""
     }
 
-    handleSubmit(e) {
-        e.preventDefault()
+    this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleChange = this.handleChange.bind(this)
+  }
 
-        fetch("/user/signup", {
-            method: "POST",
-            headers: {
-                "Accept": "application/json",
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(this.state)
-        })
-        .then(r => r.json())
-        .then(result => {
-            if(result.success) {
-                this.props.history.push("/user")
-            } else {
-                this.setState({
-                    error: result.error
-                })
-            }
-        })
-    }
+  handleSubmit (e) {
+    e.preventDefault()
 
-    handleChange(e) {
+    fetch("/user/signup", {
+      method: "POST",
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(this.state)
+    })
+    .then(r => r.json())
+    .then(result => {
+      if (result.success) {
+        this.props.history.push("/user")
+      } else {
         this.setState({
-            [e.target.name]: e.target.value
+          error: result.error
         })
-    }
+      }
+    })
+  }
 
-    render() {
-        return (
+  handleChange (e) {
+    this.setState({
+      [e.target.name]: e.target.value
+    })
+  }
+
+  render () {
+    return (
             <div>
                 <h1>Sign up</h1>
                 <div style={{color: "red"}}>
@@ -58,8 +58,8 @@ class SignupPage extends React.Component {
                 </form>
                 <p>Already have an account? <Link to="/signin">Sign in</Link></p>
             </div>
-        )
-    }
+    )
+  }
 }
 
 export default SignupPage

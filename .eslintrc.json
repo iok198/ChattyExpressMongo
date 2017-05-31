@@ -1,0 +1,23 @@
+{
+    "extends": ["standard", "plugin:react/recommended"],
+    "plugins": [
+        "standard",
+        "promise",
+        "react"
+    ],
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        }
+    },
+    "env": {
+        "node": true,
+        "mocha": true
+    },
+    "rules": {
+        "quotes": "off"
+    },
+    "globals": {
+        "fetch": true
+    }
+}

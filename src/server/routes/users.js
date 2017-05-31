@@ -1,27 +1,23 @@
 import express from "express"
 import passport from "passport"
-import bodyParser from "body-parser"
 
-const router = express.Router();
-
-import User from "../models/user.model"
+const router = express.Router()
 
 /* GET users listing. */
 router.get('/', (req, res, next) => {
-  res.send('respond with a resource');
-});
+  res.send('respond with a resource')
+})
 
 router.get('/profile', (req, res) => {
-  res.render('profile');
+  res.render('profile')
 })
 
 router.get('/signin', (req, res) => {
-  var messages = req.flash("error");
-  res.render('signin', { errors: messages, hasErrors: messages.length > 0 });
-});
+  var messages = req.flash("error")
+  res.render('signin', { errors: messages, hasErrors: messages.length > 0 })
+})
 
 router.post('/signin', function (req, res, next) {
-
   passport.authenticate("signin", (err, user, info) => {
     if (err) {
       return next(err)
@@ -43,12 +39,12 @@ router.post('/signin', function (req, res, next) {
       return res.json({ success: true, user })
     })
   })(req, res, next)
-});
+})
 
 router.get('/signup', (req, res) => {
-  var messages = req.flash("error");
-  res.render('signup', { errors: messages, hasErrors: messages.length > 0 });
-});
+  var messages = req.flash("error")
+  res.render('signup', { errors: messages, hasErrors: messages.length > 0 })
+})
 
 router.post('/signup', (req, res) => {
   passport.authenticate("signup", (err, newUser, info) => {
@@ -56,12 +52,12 @@ router.post('/signup', (req, res) => {
       return res.json({ success: false, error: err.message })
     }
 
-    if(info) {
+    if (info) {
       return res.json({ success: false, error: info.message })
     }
 
     req.logIn(newUser, error => {
-      if(error) {
+      if (error) {
         return res.json({ success: false, error })
       }
 
@@ -71,14 +67,6 @@ router.post('/signup', (req, res) => {
       })
     })
   })(req, res)
-});
-
-function isLoggedIn(req, res, next) {
-  if (req.isAuthenticated()) {
-    return next();
-  } else {
-    res.redirect("/user/signin");
-  }
-}
+})
 
 export default router
