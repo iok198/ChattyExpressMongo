@@ -46,18 +46,18 @@ class SigninPage extends React.Component {
 
   render () {
     return (
-            <div>
-                <h1>Sign in</h1>
-                <div style={{color: "red"}}>
-                    {this.state.error}
-                </div>
-                <form onSubmit={this.handleSubmit}>
-                    <input type="text" name="username" onChange={this.handleChange}/>
-                    <input type="password" name="password" onChange={this.handleChange}/>
-                    <input type="submit" />
-                </form>
-                <p>{"Don't"} have an account? <Link to="/signup">Sign up</Link></p>
+        <div>
+            <h1>Sign in</h1>
+            <div style={{color: "red"}}>
+                {this.state.error}
             </div>
+            <form onSubmit={this.handleSubmit}>
+                <input type="text" name="username" onChange={this.handleChange}/>
+                <input type="password" name="password" onChange={this.handleChange}/>
+                <input type="submit" />
+            </form>
+            <p>{"Don't"} have an account? <Link to="/signup">Sign up</Link></p>
+        </div>
     )
   }
 }

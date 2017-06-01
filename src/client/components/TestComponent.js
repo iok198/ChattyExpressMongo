@@ -42,14 +42,14 @@ class TestComponent extends React.Component {
 
   render () {
     return (
+        <div>
+            <button onClick={this.changeRoute.bind(this)}>Go home!</button>
             <div>
-                <button onClick={this.changeRoute.bind(this)}>Go home!</button>
-                <div>
-                    <input type="text" name="username" onChange={this.changeValue}/> <br />
-                    <input type="password" name="password" onChange={this.changeValue}/> <br />
-                    <input type="button" value="Submit" onClick={this.handleSumbit}/> <br />
-                </div>
+                <input type="text" name="username" onChange={this.changeValue}/> <br />
+                <input type="password" name="password" onChange={this.changeValue}/> <br />
+                <input type="button" value="Submit" onClick={this.handleSumbit}/> <br />
             </div>
+        </div>
     )
   }
 }
