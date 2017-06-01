@@ -12,12 +12,11 @@
     },
     "env": {
         "node": true,
-        "mocha": true
+        "mocha": true,
+        "browser": true
     },
     "rules": {
-        "quotes": "off"
-    },
-    "globals": {
-        "fetch": true
+        "quotes": "off",
+        "react/prop-types": "off"
     }
 }
