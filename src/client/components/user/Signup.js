@@ -29,7 +29,7 @@ class SignupPage extends React.Component {
     .then(r => r.json())
     .then(result => {
       if (result.success) {
-        this.props.router.push("/user")
+        this.props.history.push("/user")
       } else {
         this.setState({
           error: result.error
