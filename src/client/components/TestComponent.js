@@ -14,7 +14,7 @@ class TestComponent extends React.Component {
   }
 
   changeRoute () {
-    this.props.history.replace("/")
+    this.props.router.replace("/")
   }
 
   handleSumbit (e) {

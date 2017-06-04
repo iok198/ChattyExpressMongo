@@ -29,7 +29,7 @@ class SigninPage extends React.Component {
     .then(r => r.json())
     .then(result => {
       if (result.success) {
-        this.props.history.push("/user")
+        this.props.router.push("/user")
       } else {
         this.setState({
           error: result.error
