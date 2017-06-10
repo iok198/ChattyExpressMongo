@@ -31,6 +31,8 @@ describe("User Tests", function () {
 
   it("should compare passwords correctly", function () {
     User.findOne({username: "Test"}, function (err, user) {
+      expect(err).to.be(null)
+
       expect(user.validPassword(user.password)).to.be(true)
     })
   })
