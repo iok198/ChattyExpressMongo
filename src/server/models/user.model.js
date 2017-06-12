@@ -1,6 +1,8 @@
 import mongoose from "mongoose"
 import bcrypt from "bcrypt-nodejs"
 
+mongoose.Promise = global.Promise
+
 var UserSchema = new mongoose.Schema({
   username: {type: String, required: true},
   password: {type: String, required: true}
