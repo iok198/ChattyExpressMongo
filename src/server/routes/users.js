@@ -23,8 +23,6 @@ router.post('/signin', function (req, res, next) {
       return next(err)
     }
 
-    console.log(err, user, info)
-
     if (!user) {
       return res.json({ success: false, error: info.message })
     }

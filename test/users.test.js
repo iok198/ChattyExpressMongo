@@ -4,7 +4,7 @@ import mongoose from "mongoose"
 
 describe("User Tests", function () {
   before(function () {
-    mongoose.connect("localhost/ChattyDB")
+    mongoose.createConnection("localhost/ChattyDB")
   })
 
   it("Creates user properly", function (done) {
@@ -16,7 +16,7 @@ describe("User Tests", function () {
     testUser.save(function (err, user) {
       if (err) done(err)
 
-      expect(user).to.not.be.equal(null)
+      expect(user).to.not.equal(null)
       done()
     })
   })
