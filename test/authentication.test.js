@@ -3,7 +3,17 @@ import request from "supertest"
 import app from "../src/server/app"
 import User from "../src/server/models/user.model"
 
-describe("Authentication tests", function () {
+describe("Authentication tests", () => {
+
+  before(() => {
+    var testUser = new User({
+      username: "Tester",
+      password: "abc123"
+    })
+
+    testUser.save((err, newUser) => {})
+  })
+
   it("Logins correctly", done => {
     request(app)
         .post("/user/signin")
@@ -40,8 +50,7 @@ describe("Authentication tests", function () {
   })
 
   after(() => {
-    User.findOneAndRemove({username: "Example"}, function () {
-
-    })
+    User.findOneAndRemove({username: "Example"}, () => {})
+    User.findOneAndRemove({username: "Tester"}, () => {})
   })
 })

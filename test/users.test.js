@@ -2,18 +2,18 @@ import User from "../src/server/models/user.model"
 import { expect } from "chai"
 import mongoose from "mongoose"
 
-describe("User Tests", function () {
-  before(function () {
+describe("User Tests", () => {
+  before(() => {
     mongoose.createConnection("localhost/ChattyDB")
   })
 
-  it("Creates user properly", function (done) {
+  it("Creates user properly", done => {
     var testUser = new User({
       username: "Test",
       password: "password"
     })
 
-    testUser.save(function (err, user) {
+    testUser.save((err, user) => {
       if (err) done(err)
 
       expect(user).to.not.equal(null)
@@ -21,8 +21,8 @@ describe("User Tests", function () {
     })
   })
 
-  it("should hash password correctly", function (done) {
-    User.findOne({username: "Test"}, function (err, user) {
+  it("should hash password correctly", done => {
+    User.findOne({username: "Test"}, (err, user) => {
       if (err) done(err)
 
       expect(user.password).to.not.be.empty
@@ -31,8 +31,8 @@ describe("User Tests", function () {
     })
   })
 
-  it("should compare passwords correctly", function (done) {
-    User.findOne({username: "Test"}, function (err, user) {
+  it("should compare passwords correctly", done => {
+    User.findOne({username: "Test"}, (err, user) => {
       if (err) done(err)
 
       expect(user.validPassword("password")).to.be.true
@@ -40,14 +40,14 @@ describe("User Tests", function () {
     })
   })
 
-  it("Deletes user properly", function (done) {
-    User.remove({username: "Test"}, function (err) {
+  it("Deletes user properly", done => {
+    User.remove({username: "Test"}, err => {
       if (err) done(err)
       else done()
     })
   })
 
-  after(function () {
+  after(() => {
     mongoose.connection.close()
   })
 })
