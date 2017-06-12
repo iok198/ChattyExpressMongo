@@ -8,15 +8,6 @@ router.get('/', (req, res, next) => {
   res.send('respond with a resource')
 })
 
-router.get('/profile', (req, res) => {
-  res.render('profile')
-})
-
-router.get('/signin', (req, res) => {
-  var messages = req.flash("error")
-  res.render('signin', { errors: messages, hasErrors: messages.length > 0 })
-})
-
 router.post('/signin', function (req, res, next) {
   passport.authenticate("signin", (err, user, info) => {
     if (err) {
@@ -37,11 +28,6 @@ router.post('/signin', function (req, res, next) {
       return res.json({ success: true, user })
     })
   })(req, res, next)
-})
-
-router.get('/signup', (req, res) => {
-  var messages = req.flash("error")
-  res.render('signup', { errors: messages, hasErrors: messages.length > 0 })
 })
 
 router.post('/signup', (req, res) => {

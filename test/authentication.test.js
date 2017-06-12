@@ -3,18 +3,27 @@ import request from "supertest"
 import app from "../src/server/app"
 import User from "../src/server/models/user.model"
 
-describe("Authentication tests", function () {
+describe("Authentication tests", () => {
+  before(() => {
+    var testUser = new User({
+      username: "Tester",
+      password: "abc123"
+    })
+
+    testUser.save((e, newUser) => {})
+  })
+
   it("Logins correctly", done => {
     request(app)
         .post("/user/signin")
-        .send({ username: "Isaac", password: "cheese123" })
+        .send({ username: "Tester", password: "abc123" })
         .expect("Content-Type", /json/)
         .expect(200)
         .end((err, res) => {
           if (err) done(err)
 
           expect(res.body.success).to.be.true
-          expect(res.body.user.username).to.equal("Isaac")
+          expect(res.body.user.username).to.equal("Tester")
           done()
         })
   })
@@ -40,8 +49,7 @@ describe("Authentication tests", function () {
   })
 
   after(() => {
-    User.findOneAndRemove({username: "Example"}, function () {
-
-    })
+    User.findOneAndRemove({username: "Example"}, () => {})
+    User.findOneAndRemove({username: "Tester"}, () => {})
   })
 })
