@@ -18,6 +18,7 @@
     "rules": {
         "quotes": "off",
         "react/prop-types": "off",
-        "react/jsx-indent": 1
+        "react/jsx-indent": 1,
+        "no-unused-expressions": "off"
     }
 }

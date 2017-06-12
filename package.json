@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "nodemon ./dist/app.js",
-    "test": "mocha-webpack --webpack-config ./webpack/webpack.test.js \"test/**/*.js\"",
+    "test": "mocha --harmony --compilers js:babel-register --recursive test",
     "lint": "eslint src",
     "build": "webpack --config ./webpack/webpack.full.js",
     "build:client": "webpack --config ./webpack/webpack.client.js",
@@ -14,7 +14,7 @@
     "watch:server": "webpack --config ./webpack/webpack.server.js --watch"
   },
   "dependencies": {
-    "babel-core": "^6.24.1",
+    "babel-register": "^6.24.1",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "~1.15.1",
     "connect-flash": "^0.1.1",
@@ -26,6 +26,7 @@
     "hbs": "~4.0.0",
     "history": "^4.6.1",
     "jsonwebtoken": "^7.4.0",
+    "mocha-loader": "^1.1.1",
     "mocha-webpack": "^0.7.0",
     "mongoose": "^4.9.3",
     "morgan": "~1.7.0",
