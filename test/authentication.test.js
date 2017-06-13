@@ -4,14 +4,13 @@ import app from "../src/server/app"
 import User from "../src/server/models/user.model"
 
 describe("Authentication tests", () => {
-
   before(() => {
     var testUser = new User({
       username: "Tester",
       password: "abc123"
     })
 
-    testUser.save((err, newUser) => {})
+    testUser.save((e, newUser) => {})
   })
 
   it("Logins correctly", done => {
