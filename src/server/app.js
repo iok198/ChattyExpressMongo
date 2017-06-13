@@ -8,7 +8,6 @@ import hbs from "express-handlebars"
 import mongoose from "mongoose"
 import passport from "passport"
 import session from "express-session"
-import flash from "connect-flash"
 
 import routes from "./routes/index"
 import users from "./routes/users"
@@ -37,7 +36,6 @@ app.use(session({
   resave: false,
   saveUninitialized: false
 }))
-app.use(flash())
 
 app.use(passport.initialize())
 app.use(passport.session())

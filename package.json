@@ -17,17 +17,14 @@
     "babel-register": "^6.24.1",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "~1.15.1",
-    "connect-flash": "^0.1.1",
     "cookie-parser": "~1.4.3",
     "debug": "~2.2.0",
     "express": "~4.13.4",
     "express-handlebars": "^3.0.0",
     "express-session": "^1.15.2",
     "hbs": "~4.0.0",
-    "history": "^4.6.1",
     "jsonwebtoken": "^7.4.0",
-    "mocha-loader": "^1.1.1",
-    "mocha-webpack": "^0.7.0",
+    "jwt-decode": "^2.2.0",
     "mongoose": "^4.9.3",
     "morgan": "~1.7.0",
     "passport": "^0.3.2",
@@ -36,8 +33,7 @@
     "react-dom": "^15.5.4",
     "react-router": "^2.0.1",
     "react-router-dom": "^4.1.1",
-    "serve-favicon": "~2.3.0",
-    "supertest": "^3.0.0"
+    "serve-favicon": "~2.3.0"
   },
   "devDependencies": {
     "babel-loader": "^6.4.1",
@@ -53,6 +49,7 @@
     "eslint-plugin-standard": "^3.0.1",
     "mocha": "^3.2.0",
     "nodemon": "^1.11.0",
+    "supertest": "^3.0.0",
     "webpack": "^2.6.1",
     "webpack-node-externals": "^1.5.4"
   }
