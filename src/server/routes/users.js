@@ -1,5 +1,6 @@
 import express from "express"
 import passport from "passport"
+import jwt from "jsonwebtoken"
 
 const router = express.Router()
 
@@ -23,9 +24,9 @@ router.post('/signin', function (req, res, next) {
         return next(error)
       }
 
-      // req.user = user
+      var token = jwt.sign({ username: user.username }, "secret-key")
 
-      return res.json({ success: true, user })
+      return res.json({ success: true, token })
     })
   })(req, res, next)
 })
@@ -45,9 +46,11 @@ router.post('/signup', (req, res) => {
         return res.json({ success: false, error })
       }
 
+      var token = jwt.sign({ username: newUser.user }, "secret-key")
+
       return res.json({
         success: true,
-        user: newUser
+        token
       })
     })
   })(req, res)

@@ -8,6 +8,7 @@ import SignupPage from "./components/user/Signup"
 import ProfilePage from "./components/user/Profile"
 
 import TestComponent from "./components/TestComponent"
+import requireAuth from "./utils/requireAuth"
 
 import React from "react"
 
@@ -20,7 +21,7 @@ class TheRouter extends React.Component {
                 <Route path="tester" component={TestComponent} />
                 <Route path="signin" component={SigninPage} />
                 <Route path="signup" component={SignupPage} />
-                <Route path="user">
+                <Route path="user" onEnter={requireAuth}>
                     <Route path="profile" component={ProfilePage}/>
                     <IndexRoute component={ProfilePage}/>
                 </Route>

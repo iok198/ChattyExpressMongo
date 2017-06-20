@@ -1,8 +1,12 @@
 import React from "react"
 import { Link } from "react-router"
+import { observer, inject } from "mobx-react"
 
+
+@inject("userStore")
+@observer 
 class SigninPage extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.state = {
@@ -15,49 +19,44 @@ class SigninPage extends React.Component {
     this.handleChange = this.handleChange.bind(this)
   }
 
-  handleSubmit (e) {
+  handleSubmit(e) {
     e.preventDefault()
+    const { login } = this.props.userStore
 
-    fetch("/user/signin", {
-      method: "POST",
-      headers: {
-        "Accept": "application/json",
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(this.state)
+    login({
+      username: this.state.username,
+      password: this.state.password
     })
-    .then(r => r.json())
-    .then(result => {
-      if (result.success) {
-        this.props.history.push("/user")
-      } else {
-        this.setState({
-          error: result.error
-        })
-      }
+    .then(user => {
+      this.props.history.push("/user")
     })
+    .catch(error => {
+      console.log(error)
+      this.setState({error: error})
+    })
+
   }
 
-  handleChange (e) {
+  handleChange(e) {
     this.setState({
       [e.target.name]: e.target.value
     })
   }
 
-  render () {
+  render() {
     return (
-        <div>
-            <h1>Sign in</h1>
-            <div style={{color: "red"}}>
-                {this.state.error}
-            </div>
-            <form onSubmit={this.handleSubmit}>
-                <input type="text" name="username" onChange={this.handleChange}/>
-                <input type="password" name="password" onChange={this.handleChange}/>
-                <input type="submit" />
-            </form>
-            <p>{"Don't"} have an account? <Link to="/signup">Sign up</Link></p>
+      <div>
+        <h1>Sign in</h1>
+        <div style={{ color: "red" }}>
+          {this.state.error}
         </div>
+        <form onSubmit={this.handleSubmit}>
+          <input type="text" name="username" onChange={this.handleChange} />
+          <input type="password" name="password" onChange={this.handleChange} />
+          <input type="submit" />
+        </form>
+        <p>{"Don't"} have an account? <Link to="/signup">Sign up</Link></p>
+      </div>
     )
   }
 }

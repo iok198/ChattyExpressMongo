@@ -1,6 +1,10 @@
 import React from "react"
 import { Link } from "react-router"
+import { observer, inject } from "mobx-react"
 
+
+@inject("userStore")
+@observer 
 class SignupPage extends React.Component {
   constructor (props) {
     super(props)
@@ -17,25 +21,16 @@ class SignupPage extends React.Component {
 
   handleSubmit (e) {
     e.preventDefault()
+    const { signup } = this.props.userStore
 
-    fetch("/user/signup", {
-      method: "POST",
-      headers: {
-        "Accept": "application/json",
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(this.state)
+    signup({
+      username: this.state.username,
+      password: this.state.password
     })
-    .then(r => r.json())
-    .then(result => {
-      if (result.success) {
-        this.props.history.push("/user")
-      } else {
-        this.setState({
-          error: result.error
-        })
-      }
+    .then(user => {
+      this.props.history.push("/user")
     })
+    .catch(error => this.setState({error}))
   }
 
   handleChange (e) {
