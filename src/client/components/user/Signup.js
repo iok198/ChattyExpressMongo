@@ -28,9 +28,13 @@ class SignupPage extends React.Component {
       password: this.state.password
     })
     .then(user => {
+      console.log(user)
       this.props.history.push("/user")
     })
-    .catch(error => this.setState({error}))
+    .catch(error => {
+      console.log(error)
+      this.setState({error})
+    })
   }
 
   handleChange (e) {

@@ -22,17 +22,18 @@ class SigninPage extends React.Component {
   handleSubmit(e) {
     e.preventDefault()
     const { login } = this.props.userStore
-
+    console.log(this.props.userStore)
     login({
       username: this.state.username,
       password: this.state.password
     })
     .then(user => {
+      console.log(user)
       this.props.history.push("/user")
     })
     .catch(error => {
       console.log(error)
-      this.setState({error: error})
+      this.setState({error})
     })
 
   }
