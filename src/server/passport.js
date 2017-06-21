@@ -1,4 +1,5 @@
 import passport from "passport"
+import jwt from "jsonwebtoken"
 import LocalStratagy from "passport-local"
 import User from "./models/user.model"
 
@@ -25,7 +26,7 @@ passport.use("signup", new LocalStratagy({
     }
 
     if (user) {
-      return done(null, false, { message: "Username is already taken" })
+      return done({ success: false, message: "Username is already taken" })
     }
 
     var newUser = new User({
@@ -38,7 +39,9 @@ passport.use("signup", new LocalStratagy({
         return done(err)
       }
 
-      return done(null, theNewUser)
+      var token = jwt.sign({ username: theNewUser.username }, "secret-key")
+
+      return done(null, theNewUser, token)
     })
   })
 }))
@@ -55,13 +58,15 @@ passport.use("signin", new LocalStratagy({
     }
 
     if (!user) {
-      return done(null, false, { message: "Username not found" })
+      return done({ success: false, message: "Username not found" })
     }
 
     if (!user.validPassword(password)) {
-      return done(null, false, { message: "Invalid Password" })
+      return done({ success: false, message: "Invalid Password" })
     }
 
-    return done(null, user)
+    var token = jwt.sign({ username: user.username }, "secret-key")
+
+    return done(null, user, token)
   })
 }))

@@ -59,7 +59,12 @@ class UserStore {
     }
 
     @computed get user() {
-        return jwtDecode(this.token)
+        try {
+            return jwtDecode(this.token)
+        } catch(e) {
+            console.log(e)
+        }
+        
     }
 }
 

@@ -10,13 +10,9 @@ router.get('/', (req, res, next) => {
 })
 
 router.post('/signin', function (req, res, next) {
-  passport.authenticate("signin", (err, user, info) => {
+  passport.authenticate("signin", (err, user, token) => {
     if (err) {
-      return next(err)
-    }
-
-    if (!user) {
-      return res.json({ success: false, error: info.message })
+      return res.json(err)
     }
 
     req.logIn(user, error => {
@@ -24,29 +20,21 @@ router.post('/signin', function (req, res, next) {
         return next(error)
       }
 
-      var token = jwt.sign({ username: user.username }, "secret-key")
-
       return res.json({ success: true, token })
     })
   })(req, res, next)
 })
 
 router.post('/signup', (req, res) => {
-  passport.authenticate("signup", (err, newUser, info) => {
+  passport.authenticate("signup", (err, newUser, token) => {
     if (err) {
-      return res.json({ success: false, error: err.message })
-    }
-
-    if (info) {
-      return res.json({ success: false, error: info.message })
+      return res.json(err)
     }
 
     req.logIn(newUser, error => {
       if (error) {
         return res.json({ success: false, error })
       }
-
-      var token = jwt.sign({ username: newUser.user }, "secret-key")
 
       return res.json({
         success: true,
