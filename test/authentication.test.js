@@ -1,5 +1,6 @@
 import { expect } from "chai"
 import request from "supertest"
+import jwtDecode from "jwt-decode"
 import app from "../src/server/app"
 import User from "../src/server/models/user.model"
 
@@ -22,8 +23,10 @@ describe("Authentication tests", () => {
         .end((err, res) => {
           if (err) done(err)
 
+          const username = jwtDecode(res.body.token).username
+
           expect(res.body.success).to.be.true
-          expect(res.body.user.username).to.equal("Tester")
+          expect(username).to.equal("Tester")
           done()
         })
   })
@@ -37,7 +40,7 @@ describe("Authentication tests", () => {
         .end((err, res) => {
           if (err) done(err)
 
-          const { user } = res.body
+          const user = jwtDecode(res.body.token)
 
           expect(res.body.success).to.be.true
 
