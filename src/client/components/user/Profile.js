@@ -4,12 +4,12 @@ import { observer, inject } from "mobx-react"
 @inject("userStore")
 @observer
 class ProfilePage extends React.Component {
-  render() {
+  render () {
     return (
-      <div>
-        <h1>Your Profile</h1>
-        <p>Hello {this.props.userStore.user.username}</p>
-      </div>
+        <div>
+            <h1>Your Profile</h1>
+            <p>Hello {this.props.userStore.user.username}</p>
+        </div>
     )
   }
 }

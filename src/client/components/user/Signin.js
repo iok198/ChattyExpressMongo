@@ -2,11 +2,10 @@ import React from "react"
 import { Link } from "react-router"
 import { observer, inject } from "mobx-react"
 
-
 @inject("userStore")
-@observer 
+@observer
 class SigninPage extends React.Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
 
     this.state = {
@@ -19,7 +18,7 @@ class SigninPage extends React.Component {
     this.handleChange = this.handleChange.bind(this)
   }
 
-  handleSubmit(e) {
+  handleSubmit (e) {
     e.preventDefault()
     const { login } = this.props.userStore
     console.log(this.props.userStore)
@@ -35,29 +34,28 @@ class SigninPage extends React.Component {
       console.log(error)
       this.setState({error})
     })
-
   }
 
-  handleChange(e) {
+  handleChange (e) {
     this.setState({
       [e.target.name]: e.target.value
     })
   }
 
-  render() {
+  render () {
     return (
-      <div>
-        <h1>Sign in</h1>
-        <div style={{ color: "red" }}>
-          {this.state.error}
+        <div>
+            <h1>Sign in</h1>
+            <div style={{ color: "red" }}>
+                {this.state.error}
+            </div>
+            <form onSubmit={this.handleSubmit}>
+                <input type="text" name="username" onChange={this.handleChange} />
+                <input type="password" name="password" onChange={this.handleChange} />
+                <input type="submit" />
+            </form>
+            <p>{"Don't"} have an account? <Link to="/signup">Sign up</Link></p>
         </div>
-        <form onSubmit={this.handleSubmit}>
-          <input type="text" name="username" onChange={this.handleChange} />
-          <input type="password" name="password" onChange={this.handleChange} />
-          <input type="submit" />
-        </form>
-        <p>{"Don't"} have an account? <Link to="/signup">Sign up</Link></p>
-      </div>
     )
   }
 }

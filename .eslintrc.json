@@ -5,11 +5,7 @@
         "promise",
         "react"
     ],
-    "parserOptions": {
-        "ecmaFeatures": {
-            "jsx": true
-        }
-    },
+    "parser": "babel-eslint",
     "env": {
         "node": true,
         "mocha": true,
@@ -20,6 +16,7 @@
         "react/prop-types": "off",
         "react/jsx-indent": 1,
         "no-unused-expressions": "off",
-        "indent":"error"
+        "indent":"error",
+        "no-mixed-spaces-and-tabs":"error"
     }
 }

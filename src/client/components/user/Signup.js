@@ -2,9 +2,8 @@ import React from "react"
 import { Link } from "react-router"
 import { observer, inject } from "mobx-react"
 
-
 @inject("userStore")
-@observer 
+@observer
 class SignupPage extends React.Component {
   constructor (props) {
     super(props)
