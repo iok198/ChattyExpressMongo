@@ -7,11 +7,15 @@ import hbs from "express-handlebars"
 import mongoose from "mongoose"
 import passport from "passport"
 import session from "express-session"
+import socketIO from "socket.io"
+import http from "http"
 
 import routes from "./routes/index"
 import users from "./routes/users"
 
 const app = express()
+const server = http.createServer(app)
+const io = socketIO(server)
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
@@ -44,6 +48,20 @@ app.use(express.static(path.normalize(`./${__dirname}/../../public`)))
 app.use('/', routes)
 app.use('/user', users)
 
+io.on("connection", socket => {
+  console.log("A socket connected")
+
+  socket.on("msg", msg => {
+    console.log(`${msg.username} said: "${msg.message}"`)
+
+    io.emit("msg", msg)
+  })
+
+  socket.on("disconnect", () => {
+    console.log("A socket disconnected")
+  })
+})
+
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
   var err = new Error('Not Found')
@@ -75,7 +93,7 @@ app.use((err, req, res, next) => {
   })
 })
 
-app.listen(3000, () => {
+server.listen(3000, () => {
   console.log("Server listening in port 3000")
 })
 

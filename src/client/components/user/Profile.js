@@ -4,7 +4,6 @@ import { observer, inject } from "mobx-react"
 @inject("userStore")
 @observer
 class ProfilePage extends React.Component {
-
   constructor (props) {
     super(props)
 
