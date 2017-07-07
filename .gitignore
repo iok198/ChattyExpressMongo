@@ -37,4 +37,4 @@ public/javascripts/react/
 .vscode/
 
 .tmp
-tsconfig.json
+jsconfig.json

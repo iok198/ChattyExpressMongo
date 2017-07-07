@@ -3,7 +3,7 @@ import jwtDecode from "jwt-decode"
 
 class UserStore {
   @observable loggedIn = false
-  @observable token = ""
+  @observable token = localStorage.getItem("token") || ""
 
   constructor () {
     this.login = this.login.bind(this)
@@ -26,10 +26,10 @@ class UserStore {
       if (result.success) {
         this.loggedIn = true
         this.token = result.token
-        return result
+        return Promise.resolve(result)
       } else {
         this.loggedIn = false
-        return result.error
+        return Promise.reject(result.message)
       }
     })
   }
@@ -49,10 +49,10 @@ class UserStore {
       if (result.success) {
         this.loggedIn = true
         this.token = result.token
-        return result
+        return Promise.resolve(result)
       } else {
         this.loggedIn = false
-        return result.error
+        return Promise.reject(result.message)
       }
     })
   }
@@ -61,7 +61,7 @@ class UserStore {
       try {
         return jwtDecode(this.token)
       } catch (e) {
-        console.log(e)
+        console.error(e)
       }
     }
 }

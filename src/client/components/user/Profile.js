@@ -5,10 +5,12 @@ import { observer, inject } from "mobx-react"
 @observer
 class ProfilePage extends React.Component {
   render () {
+    let username = this.props.userStore.user.username || "Unknown"
+    console.log(this.props.userStore)
     return (
         <div>
             <h1>Your Profile</h1>
-            <p>Hello {this.props.userStore.user.username}</p>
+            <p>Hello {username}</p>
         </div>
     )
   }
