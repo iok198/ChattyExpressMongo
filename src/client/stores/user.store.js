@@ -8,6 +8,7 @@ class UserStore {
   constructor () {
     this.login = this.login.bind(this)
     this.signup = this.signup.bind(this)
+    this.logout = this.logout.bind(this)
   }
 
   @action
@@ -55,6 +56,11 @@ class UserStore {
         return Promise.reject(result.message)
       }
     })
+  }
+
+  @action
+  logout () {
+    this.token = ""
   }
 
     @computed get user () {
