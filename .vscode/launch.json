@@ -7,28 +7,9 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "Mocha Tests",
-            "program": "${workspaceRoot}/node_modules/mocha/bin/_mocha",
-            "args": [
-                "-u",
-                "tdd",
-                "--timeout",
-                "999999",
-                "--colors",
-                "--compilers js:babel-register",
-                "${workspaceRoot}/test"
-            ],
-            "internalConsoleOptions": "openOnSessionStart"
-        },
-        {
-            "type": "node",
-            "request": "launch",
             "name": "Launch Program",
-            "program": "${workspaceRoot}\\dist\\app.js",
-            "sourceMaps": true,
-            "outFiles": [
-                "${workspaceRoot}\\dist\\**\\*.js"
-            ]
+            "program": "${workspaceRoot}\\index.js",
+            "sourceMaps": true
         },
         {
             "type": "node",

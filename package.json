@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon ./dist/app.js",
+    "start": "node ./dist/app.js",
+    "start:dev": "nodemon index.js",
     "test": "mocha --harmony --compilers js:babel-register --recursive test",
     "lint": "eslint .",
     "build": "webpack --config ./webpack/webpack.full.js",
