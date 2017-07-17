@@ -18,6 +18,7 @@
         "no-unused-expressions": "off",
         "indent":"off",
         "no-mixed-spaces-and-tabs":"error",
-        "space-before-function-paren":"off"
+        "space-before-function-paren":"off",
+        "eqeqeq":"off"
     }
 }

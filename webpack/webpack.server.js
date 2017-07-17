@@ -1,5 +1,18 @@
+var webpack = require("webpack")
 var nodeExternals = require("webpack-node-externals")
 var path = require("path")
+
+var plugins = []
+
+if (process.env.NODE_ENV == "production") {
+  plugins.push(new webpack.DefinePlugin({
+    "process.env": {
+      NODE_ENV: JSON.stringify("production")
+    }
+  }))
+
+  plugins.push(new webpack.optimize.UglifyJsPlugin())
+}
 
 module.exports = {
   target: "node",
@@ -30,5 +43,6 @@ module.exports = {
         ]
       }
     ]
-  }
+  },
+  plugins
 }
