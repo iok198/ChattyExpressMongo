@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node ./dist/app.js",
     "start:dev": "nodemon index.js",
-    "test": "mocha --harmony --compilers js:babel-register --recursive test",
+    "test": "mocha test/setup.js --recursive test",
     "lint": "eslint .",
     "build": "webpack --config ./webpack/webpack.full.js",
     "build:client": "webpack --config ./webpack/webpack.client.js",
@@ -49,6 +49,7 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-1": "^6.24.1",
     "chai": "^3.5.0",
+    "enzyme": "^2.9.1",
     "eslint": "^3.19.0",
     "eslint-config-standard": "^10.2.1",
     "eslint-plugin-import": "^2.3.0",
@@ -56,8 +57,11 @@
     "eslint-plugin-promise": "^3.5.0",
     "eslint-plugin-react": "^7.0.1",
     "eslint-plugin-standard": "^3.0.1",
+    "jsdom": "^11.1.0",
     "mocha": "^3.2.0",
     "nodemon": "^1.11.0",
+    "react-addons-test-utils": "^15.6.0",
+    "sinon": "^2.3.8",
     "supertest": "^3.0.0",
     "webpack": "^2.6.1",
     "webpack-node-externals": "^1.5.4"

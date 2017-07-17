@@ -11,10 +11,10 @@ const stores = {
   chatStore: ChatStore
 }
 
-ReactDOM.render(
-    (
-        <Provider {...stores}>
-            <TheRouter />
-        </Provider>
-    ), document.getElementById("demo")
+let App = props => (
+    <Provider {...stores}>
+        <TheRouter />
+    </Provider>
 )
+
+export default App
