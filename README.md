@@ -1,33 +1,32 @@
 # ChattyExpressMongo
 
-Hello guys or gals, this is an app that allows users to chat with other people
+This basicly allows users to be able to talk to each other
 
-What does this use?
+It uses:
 
 * Express
 * MongoDB (mongoose as the ODM)
 * React
+* MobX
 * Passport
+* JWT
 * Socket.io
 
 To run this app, you must
 
 ```bash
-npm install
-```
-or
-```bash
 yarn install
 ```
 
 
-after you have installed all of the dependencies you can
-
+After you install everything, you run
 
 ```bash
-npm start
+yarn build
 ```
-or
+Then go and
+
+
 ```bash
-yarn run start
+yarn start
 ```
