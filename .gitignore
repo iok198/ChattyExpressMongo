@@ -28,3 +28,13 @@ node_modules
 
 # Debug log from npm
 npm-debug.log
+
+# Dist code compiled from webpack 
+dist
+public/javascripts/react/
+
+# For vscode specific things
+.vscode/
+
+.tmp
+jsconfig.json
