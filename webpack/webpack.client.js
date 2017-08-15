@@ -15,7 +15,7 @@ if (process.env.NODE_ENV == "production") {
 
 module.exports = {
   target: "web",
-  entry: path.join(__dirname, "..", "src", "client", "App.js"),
+  entry: path.join(__dirname, "..", "src", "client", "browser.js"),
   output: {
     path: path.join(__dirname, "..", "public", "javascripts", "react"),
     filename: "bundle.js"

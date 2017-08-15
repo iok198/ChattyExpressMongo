@@ -17,12 +17,15 @@ describe("User Tests", () => {
       if (err) done(err)
 
       expect(user).to.not.equal(null)
+      expect(user.username).to.equal("Test")
+      expect(user.password).to.not.be.null
+
       done()
     })
   })
 
   it("should hash password correctly", done => {
-    User.findOne({username: "Test"}, (err, user) => {
+    User.findOne({ username: "Test" }, (err, user) => {
       if (err) done(err)
 
       expect(user.password).to.not.be.empty
@@ -32,7 +35,7 @@ describe("User Tests", () => {
   })
 
   it("should compare passwords correctly", done => {
-    User.findOne({username: "Test"}, (err, user) => {
+    User.findOne({ username: "Test" }, (err, user) => {
       if (err) done(err)
 
       expect(user.validPassword("password")).to.be.true
@@ -41,9 +44,18 @@ describe("User Tests", () => {
   })
 
   it("Deletes user properly", done => {
-    User.remove({username: "Test"}, err => {
+    User.remove({ username: "Test" }, err => {
       if (err) done(err)
-      else done()
+
+      else {
+        User.findOne({ username: "Test" }, (err, user) => {
+          if (err) done(err)
+
+          expect(user).to.be.null
+        })
+
+        done()
+      }
     })
   })
 
