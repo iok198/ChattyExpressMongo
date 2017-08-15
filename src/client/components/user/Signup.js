@@ -52,7 +52,7 @@ class SignupPage extends React.Component {
             <form onSubmit={this.handleSubmit}>
                 <input type="text" name="username" onChange={this.handleChange}/>
                 <input type="password" name="password" onChange={this.handleChange}/>
-                <input type="submit" />
+                <input type="submit" id="submit" />
             </form>
             <p>Already have an account? <Link to="/signin">Sign in</Link></p>
         </div>

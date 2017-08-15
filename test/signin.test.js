@@ -1,28 +1,40 @@
 import { expect } from "chai"
 import sinon from "sinon"
-import {mount, shallow} from "enzyme"
+import { shallow } from "enzyme"
 import React from "react"
 
-import App from "../src/client/App.js"
-import UserStore from "../src/client/stores/user.store"
-import SigninPage from "../src/client/components/user/Signin" 
+import SigninPage from "../src/client/components/user/Signin"
 
-// describe("Signin tests", () => {
-//     it("should redirect to profile when correct login", () => {
+describe("Signin tests", function() {
+    before(function() {
+      this.ComponentProps = {
+        userStore: {
+          token: "",
+          loggedIn: false,
+          login() { },
+          signup() { }
+        }
+      }
+    })
 
-//     })
+    it("should redirect to profile when correct login", function() {
+      sinon.spy(this.ComponentProps.userStore, "login")
+      const wrapper = shallow(<SigninPage {...this.ComponentProps} />)
 
-//     it("should stay on page and give error when incorrect login", () => {
-        
-//     })
-// })
+      // const form = wrapper.find("form").first()
 
+      // form.simulate("submit")
 
-describe('<Foo />', () => {
-  it('calls componentDidMount', () => {
-    
+      wrapper.find('[type="submit"]').first().simulate("click")
+      
+      expect(this.ComponentProps.userStore.login.called).to.be.true
+    })
 
-    const wrapper = shallow(<SigninPage userStore={UserStore}/>);
-    expect(wrapper.find("h1").at(0).text).to.equal("Sign in");
-  });
-});
+    it("should stay on page and give error when incorrect login", function() {
+
+    })
+
+    after(function() {
+      this.ComponentProps.userStore.login.restore()
+    })
+})
