@@ -1,9 +1,11 @@
-var webpack = require("webpack")
-var path = require("path")
+import webpack from "webpack"
+import path from "path"
 
-var plugins = []
+import config from "../config"
 
-if (process.env.NODE_ENV == "production") {
+let plugins = []
+
+if (config.nodeEnv == "production") {
   plugins.push(new webpack.DefinePlugin({
     "process.env": {
       NODE_ENV: JSON.stringify("production")

@@ -38,3 +38,5 @@ public/javascripts/react/
 
 .tmp
 jsconfig.json
+
+.env

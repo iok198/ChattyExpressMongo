@@ -3,6 +3,7 @@ import passport from "passport"
 import jwt from "jsonwebtoken"
 
 import User from "../models/user.model"
+import config from "../../../config"
 
 const router = express.Router()
 
@@ -49,7 +50,7 @@ router.post("/signup", (req, res) => {
 router.post("/verify", (req, res) => {
   const token = req.body.token
 
-  jwt.verify(token, "secret-key", (err, decoded) => {
+  jwt.verify(token, config.jwtSecret, (err, decoded) => {
     if (err) {
       return res.json({ authorized: false })
     }

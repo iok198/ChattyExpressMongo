@@ -7,12 +7,12 @@
     "start:dev": "nodemon index.js",
     "test": "mocha test/setup.js --recursive test",
     "lint": "eslint .",
-    "build": "webpack --config ./webpack/webpack.full.js",
-    "build:client": "webpack --config ./webpack/webpack.client.js",
-    "build:server": "webpack --config ./webpack/webpack.server.js",
-    "watch": "webpack --config ./webpack/webpack.full.js --watch",
-    "watch:client": "webpack --config ./webpack/webpack.client.js --watch",
-    "watch:server": "webpack --config ./webpack/webpack.server.js --watch"
+    "build": "webpack --config ./webpack/webpack.full.babel.js",
+    "build:client": "webpack --config ./webpack/webpack.client.babel.js",
+    "build:server": "webpack --config ./webpack/webpack.server.babel.js",
+    "watch": "webpack --config ./webpack/webpack.full.babel.js --watch",
+    "watch:client": "webpack --config ./webpack/webpack.client.babel.js --watch",
+    "watch:server": "webpack --config ./webpack/webpack.server.babel.js --watch"
   },
   "dependencies": {
     "babel-register": "^6.24.1",

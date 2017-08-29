@@ -2,6 +2,7 @@ import passport from "passport"
 import jwt from "jsonwebtoken"
 import LocalStratagy from "passport-local"
 import User from "./models/user.model"
+import config from "../../config"
 
 passport.serializeUser((user, done) => {
   done(null, user.id)
@@ -39,7 +40,7 @@ passport.use("signup", new LocalStratagy({
         return done(err)
       }
 
-      var token = jwt.sign({ username: theNewUser.username }, "secret-key")
+      var token = jwt.sign({ username: theNewUser.username }, config.jwtSecret)
 
       return done(null, theNewUser, token)
     })
@@ -65,7 +66,7 @@ passport.use("signin", new LocalStratagy({
       return done({ success: false, message: "Invalid Password" })
     }
 
-    var token = jwt.sign({ username: user.username }, "secret-key")
+    var token = jwt.sign({ username: user.username }, config.jwtSecret)
 
     return done(null, user, token)
   })

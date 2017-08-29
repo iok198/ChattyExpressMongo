@@ -12,6 +12,7 @@ import http from "http"
 
 import routes from "./routes/index"
 import users from "./routes/users"
+import config from "../../config"
 
 const app = express()
 const server = http.createServer(app)
@@ -94,7 +95,7 @@ app.use((err, req, res, next) => {
 })
 
 server.listen(3000, () => {
-  console.log("Server listening in port 3000")
+  console.log(`Server listening on ${config.host}:${config.port}`)
 })
 
 export default app

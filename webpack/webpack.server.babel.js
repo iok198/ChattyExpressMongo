@@ -1,10 +1,12 @@
-var webpack = require("webpack")
-var nodeExternals = require("webpack-node-externals")
-var path = require("path")
+import webpack from "webpack"
+import nodeExternals from "webpack-node-externals"
+import path from "path"
 
-var plugins = []
+import config from "../config"
 
-if (process.env.NODE_ENV == "production") {
+let plugins = []
+
+if (config.nodeEnv == "production") {
   plugins.push(new webpack.DefinePlugin({
     "process.env": {
       NODE_ENV: JSON.stringify("production")
