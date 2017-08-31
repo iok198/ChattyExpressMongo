@@ -33,10 +33,4 @@ npm-debug.log
 dist
 public/javascripts/react/
 
-# For vscode specific things
-.vscode/
-
-.tmp
-jsconfig.json
-
 .env

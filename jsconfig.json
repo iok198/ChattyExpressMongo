@@ -1,0 +1,9 @@
+{
+    "compilerOptions": {
+        "experimentalDecorators": true,
+        "module": "commonjs"
+    },
+    "exclude": [
+        "node_modules"
+    ]
+}
