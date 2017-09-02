@@ -15,7 +15,7 @@ if (config.nodeEnv == "production") {
   plugins.push(new webpack.optimize.UglifyJsPlugin())
 }
 
-module.exports = {
+export default {
   target: "web",
   entry: path.join(__dirname, "..", "src", "client", "browser.js"),
   output: {

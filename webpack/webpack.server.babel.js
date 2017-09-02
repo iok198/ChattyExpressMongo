@@ -16,7 +16,7 @@ if (config.nodeEnv == "production") {
   plugins.push(new webpack.optimize.UglifyJsPlugin())
 }
 
-module.exports = {
+export default {
   target: "node",
   node: {
     __dirname: true,

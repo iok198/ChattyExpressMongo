@@ -17,10 +17,8 @@ passport.deserializeUser((id, done) => {
 passport.use("signup", new LocalStratagy({
   usernameField: "username",
   passwordField: "password",
-  session: false,
-  passReqToCallback: true
-
-}, (req, username, password, done) => {
+  session: false
+}, (username, password, done) => {
   User.findOne({ username }, (err, user) => {
     if (err) {
       return done(err)
@@ -50,9 +48,8 @@ passport.use("signup", new LocalStratagy({
 passport.use("signin", new LocalStratagy({
   usernameField: "username",
   passwordField: "password",
-  session: false,
-  passReqToCallback: true
-}, (req, username, password, done) => {
+  session: false
+}, (username, password, done) => {
   User.findOne({ username }, function (err, user) {
     if (err) {
       return done(err)

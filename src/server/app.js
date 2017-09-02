@@ -1,12 +1,10 @@
 import express from "express"
 import path from "path"
 import logger from "morgan"
-import cookieParser from "cookie-parser"
 import bodyParser from "body-parser"
 import hbs from "express-handlebars"
 import mongoose from "mongoose"
 import passport from "passport"
-import session from "express-session"
 import socketIO from "socket.io"
 import http from "http"
 
@@ -32,14 +30,7 @@ app.set('view engine', 'hbs')
 
 // uncomment after placing your favicon in /public
 //  app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-app.use(logger('dev'))
-app.use(cookieParser())
-
-app.use(session({
-  secret: "mysuperawesomesecretthatnoonecanbreak",
-  resave: false,
-  saveUninitialized: false
-}))
+app.use(logger((config.nodeEnv == "production") ? "prod" : "dev"))
 
 app.use(passport.initialize())
 app.use(passport.session())
@@ -95,7 +86,7 @@ app.use((err, req, res, next) => {
 })
 
 server.listen(3000, () => {
-  console.log(`Server listening on ${config.host}:${config.port}`)
+  console.log(`Server listening on http://${config.host}:${config.port}`)
 })
 
 export default app
