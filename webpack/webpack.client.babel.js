@@ -17,7 +17,7 @@ if (config.nodeEnv == "production") {
 
 export default {
   target: "web",
-  entry: path.join(__dirname, "..", "src", "client", "browser.js"),
+  entry: ["babel-regenerator-runtime", path.join(__dirname, "..", "src", "client", "browser.js")],
   output: {
     path: path.join(__dirname, "..", "public", "javascripts", "react"),
     filename: "bundle.js"

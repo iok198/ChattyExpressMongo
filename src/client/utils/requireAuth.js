@@ -1,19 +1,18 @@
 import verifyToken from "./verifyToken"
+import UserStore from "../stores/user.store"
 
-export default function requireAuth (nextState, replace, callback) {
+export default async function requireAuth(nextState, replace, callback) {
   const token = localStorage.getItem("token")
   if (!token) replace("/signin")
 
-  verifyToken(token)
-    .then(isAuth => {
-      console.log("Auth: " + isAuth)
+  let isAuth = await verifyToken(token)
+  console.log("Auth: " + isAuth)
 
-      if (!isAuth) {
-        console.log("Should redirect to login")
-        localStorage.removeItem("token")
-        replace("/signin")
-      }
-    })
+  if (!isAuth) {
+    console.log("Should redirect to login")
+    localStorage.removeItem("token")
+    replace("/signin")
+  }
 
   callback()
 }

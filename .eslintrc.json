@@ -19,6 +19,7 @@
         "indent":"off",
         "no-mixed-spaces-and-tabs":"error",
         "space-before-function-paren":"off",
-        "eqeqeq":"off"
+        "eqeqeq":"off",
+        "no-trailing-spaces": "warn"
     }
 }

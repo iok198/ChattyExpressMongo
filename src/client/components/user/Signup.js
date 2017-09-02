@@ -18,22 +18,21 @@ class SignupPage extends React.Component {
     this.handleChange = this.handleChange.bind(this)
   }
 
-  handleSubmit (e) {
+  async handleSubmit (e) {
     e.preventDefault()
     const { signup } = this.props.userStore
-
-    signup({
-      username: this.state.username,
-      password: this.state.password
-    })
-    .then(user => {
+    try {
+      let user = await signup({
+        username: this.state.username,
+        password: this.state.password
+      })
+      
       console.log(user)
       this.props.history.push("/user")
-    })
-    .catch(error => {
+    } catch (error) {
       console.log(error)
       this.setState({error})
-    })
+    }
   }
 
   handleChange (e) {
