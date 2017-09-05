@@ -53,7 +53,7 @@ class NavBar extends React.Component {
     render() {
         return (
             <AppBar 
-                title="Chat"
+                title={<Link to="/"><FlatButton label="Chat" style={buttonStyle} /></Link>}
                 iconElementRight={<NavLinks loggedIn={this.props.userStore.loggedIn}/>}
             />
         )

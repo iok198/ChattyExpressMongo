@@ -8,13 +8,26 @@ class ChatRoom extends React.Component {
     constructor(props) {
         super(props)
 
+        this.state = {
+            message: ""
+        }
+
         this.sendMessage = this.sendMessage.bind(this)
+        this.changeMessage = this.changeMessage.bind(this)
     }
 
-    sendMessage() {
-        let {username} = this.props.userStore.user
+    sendMessage(e) {
+        e.preventDefault()
+        let { username } = this.props.userStore.user
 
-        this.props.chatStore.sendMessage(username, "hey")
+        this.props.chatStore.sendMessage(username, this.state.message)
+        this.setState({ message: "" })
+    }
+
+    changeMessage(e) {
+        this.setState({
+            message: e.target.value
+        })
     }
 
     render() {
@@ -23,7 +36,10 @@ class ChatRoom extends React.Component {
         return (
             <div>
                 <h1>Chat Thing</h1>
-                <button onClick={this.sendMessage}>Send Message</button>
+                <form onSubmit={this.sendMessage}>
+                    <input type="text" onChange={this.changeMessage} value={this.state.message} />
+                    <button onClick={this.sendMessage}>Send Message</button>
+                </form>
                 <ul>
                     {messages.map((msg, i) => (<li key={i}>{msg.username}: {msg.message}</li>))}
                 </ul>
