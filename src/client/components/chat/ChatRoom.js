@@ -1,5 +1,8 @@
 import React from "react"
-import {observer, inject} from "mobx-react"
+import { observer, inject } from "mobx-react"
+
+import { List, ListItem } from "material-ui/List"
+import TextField from "material-ui/TextField"
 
 @inject("chatStore")
 @inject("userStore")
@@ -24,9 +27,9 @@ class ChatRoom extends React.Component {
         this.setState({ message: "" })
     }
 
-    changeMessage(e) {
+    changeMessage(e, newValue) {
         this.setState({
-            message: e.target.value
+            message: newValue
         })
     }
 
@@ -37,12 +40,16 @@ class ChatRoom extends React.Component {
             <div>
                 <h1>Chat Thing</h1>
                 <form onSubmit={this.sendMessage}>
-                    <input type="text" onChange={this.changeMessage} value={this.state.message} />
-                    <button onClick={this.sendMessage}>Send Message</button>
+                    <TextField value={this.state.message} onChange={this.changeMessage}/>
                 </form>
-                <ul>
-                    {messages.map((msg, i) => (<li key={i}>{msg.username}: {msg.message}</li>))}
-                </ul>
+                <List>
+                    {messages.map((msg, i) => (
+                        <ListItem
+                            primaryText={msg.message}
+                            secondaryText={msg.username} 
+                        />
+                    ))}
+                </List>
             </div>
         )
     }

@@ -1,6 +1,10 @@
 body {
   font-family: "Roboto", sans-serif;
-  margin: 0px
+  margin: 0px;
+}
+
+.content {
+  margin: 15px;
 }
 
 a {
