@@ -4,8 +4,8 @@ class HomePage extends React.Component {
   render () {
     return (
         <div>
-            <h1>Express</h1>
-            <p>Welcome to Express</p>
+            <h1>Chat</h1>
+            <p>Hello, this is a chat app, go to login or signup to get started</p>
 
         </div>
     )

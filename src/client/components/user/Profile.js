@@ -1,5 +1,6 @@
 import React from "react"
 import { observer, inject } from "mobx-react"
+import RaisedButton from "material-ui/RaisedButton"
 
 @inject("userStore")
 @observer
@@ -24,7 +25,7 @@ class ProfilePage extends React.Component {
         <div>
             <h1>Your Profile</h1>
             <p>Hello {username}</p>
-            <button onClick={this.logout}>Logout</button>
+            <RaisedButton onClick={this.logout}>Logout</RaisedButton>
         </div>
     )
   }

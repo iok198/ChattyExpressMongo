@@ -2,6 +2,9 @@ import React from "react"
 import { Link } from "react-router"
 import { observer, inject } from "mobx-react"
 
+import TextField from "material-ui/TextField"
+import RaisedButton from "material-ui/RaisedButton"
+
 @inject("userStore")
 @observer
 class SigninPage extends React.Component {
@@ -50,9 +53,9 @@ class SigninPage extends React.Component {
                 {this.state.error}
             </div>
             <form onSubmit={this.handleSubmit}>
-                <input type="text" name="username" onChange={this.handleChange} />
-                <input type="password" name="password" onChange={this.handleChange} />
-                <input type="submit" name="submit" />
+                <TextField name="username" onChange={this.handleChange} /> <br /> <br />
+                <TextField type="password" name="password" onChange={this.handleChange} /> <br /> <br />
+                <RaisedButton label="Submit" type="submit" name="submit" />
             </form>
             <p>{"Don't"} have an account? <Link to="/signup">Sign up</Link></p>
         </div>

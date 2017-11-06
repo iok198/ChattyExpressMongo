@@ -4,6 +4,7 @@ import io from "socket.io-client"
 class ChatStore {
     @observable username = ""
     @observable messages = []
+    @observable unseenMessages = 0
 
     constructor() {
       this.handleMessage = this.handleMessage.bind(this)
@@ -23,6 +24,7 @@ class ChatStore {
     handleMessage(data) {
         console.log(data)
         this.messages.unshift(data)
+        this.unseenMessages++
     }
 }
 
