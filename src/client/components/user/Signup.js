@@ -54,7 +54,7 @@ class SignupPage extends React.Component {
             <form onSubmit={this.handleSubmit}>
                 <TextField name="username" onChange={this.handleChange}/> <br /> <br />
                 <TextField type="password" name="password" onChange={this.handleChange}/> <br /> <br />
-                <FlatButton primary={true} type="submit" id="submit" />
+                <FlatButton primary={true} label="Submit" type="submit" name="submit" />
             </form>
             <p>Already have an account? <Link to="/signin">Sign in</Link></p>
         </div>
