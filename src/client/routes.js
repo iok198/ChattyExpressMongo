@@ -9,7 +9,6 @@ import ProfilePage from "./components/user/Profile"
 
 import ChatRoom from "./components/chat/ChatRoom"
 
-import TestComponent from "./components/TestComponent"
 import requireAuth from "./utils/requireAuth"
 
 import React from "react"
@@ -20,7 +19,6 @@ class TheRouter extends React.Component {
         <Router history={browserHistory}>
             <Route path="/" component={LayoutPage}>
                 <IndexRoute component={HomePage} />
-                <Route path="tester" component={TestComponent} />
                 <Route path="signin" component={SigninPage} />
                 <Route path="signup" component={SignupPage} />
                 <Route path="user" onEnter={requireAuth}>
@@ -28,6 +26,7 @@ class TheRouter extends React.Component {
                     <Route path="chat" component={ChatRoom}/>
                     <IndexRoute component={ProfilePage}/>
                 </Route>
+                <Route path="*" component={HomePage} />
             </Route>
         </Router>
     )
