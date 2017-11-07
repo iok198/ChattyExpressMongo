@@ -2,6 +2,9 @@ import React from "react"
 import { Link } from "react-router"
 import { observer, inject } from "mobx-react"
 
+import TextField from "material-ui/TextField"
+import FlatButton from "material-ui/FlatButton"
+
 @inject("userStore")
 @observer
 class SignupPage extends React.Component {
@@ -49,9 +52,9 @@ class SignupPage extends React.Component {
                 {this.state.error}
             </div>
             <form onSubmit={this.handleSubmit}>
-                <input type="text" name="username" onChange={this.handleChange}/>
-                <input type="password" name="password" onChange={this.handleChange}/>
-                <input type="submit" id="submit" />
+                <TextField name="username" onChange={this.handleChange}/> <br /> <br />
+                <TextField type="password" name="password" onChange={this.handleChange}/> <br /> <br />
+                <FlatButton primary={true} type="submit" id="submit" />
             </form>
             <p>Already have an account? <Link to="/signin">Sign in</Link></p>
         </div>

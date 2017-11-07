@@ -3,7 +3,7 @@ import { Link } from "react-router"
 import { observer, inject } from "mobx-react"
 
 import TextField from "material-ui/TextField"
-import RaisedButton from "material-ui/RaisedButton"
+import FlatButton from "material-ui/FlatButton"
 
 @inject("userStore")
 @observer
@@ -55,7 +55,7 @@ class SigninPage extends React.Component {
             <form onSubmit={this.handleSubmit}>
                 <TextField name="username" onChange={this.handleChange} /> <br /> <br />
                 <TextField type="password" name="password" onChange={this.handleChange} /> <br /> <br />
-                <RaisedButton label="Submit" type="submit" name="submit" />
+                <FlatButton primary={true} label="Submit" type="submit" name="submit" />
             </form>
             <p>{"Don't"} have an account? <Link to="/signup">Sign up</Link></p>
         </div>
